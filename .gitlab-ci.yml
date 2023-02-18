@@ -1,0 +1,39 @@
+# This folder is cached between builds
+# https://docs.gitlab.com/ee/ci/yaml/index.html#cache
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - checks
+  - build
+  - test
+
+checks:
+  image: node:18
+  stage: checks
+  script:
+    - npm ci
+    - npx prettier --check ./
+
+build:
+  image: node:18
+  stage: build
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    untracked: false
+    when: on_success
+    expire_in: "1 week"
+    paths:
+      - "dist/"
+
+test:
+  image: node:18
+  stage: test
+  script:
+    - npm ci
+    - npm run test
+  dependencies:
+    - build

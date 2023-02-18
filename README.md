@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# tv.bananabrann.dev
+
+This project is a simple website to make navigating to various streaming services simple and easy. This site is loaded directly onto an Arduino, and is opened automatically when they turn their TV on.
+
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
