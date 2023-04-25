@@ -16,25 +16,25 @@ function App() {
         <ServiceCard
           displayName="Netflix"
           url="https://netflix.com"
-          imageUrl="https://bananabrann.nyc3.cdn.digitaloceanspaces.com/tv.bananabrann.dev%2Fnetflix-450x174jpg.jpg"
+          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/netflix-450x174.jpg"
         />
 
         <ServiceCard
           displayName="Peacock"
           url="https://peacock.com"
-          imageUrl="https://bananabrann.nyc3.cdn.digitaloceanspaces.com/tv.bananabrann.dev%2Fpeacock-450x174jpg.jpg"
+          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/peacock-450x174.jpg"
         />
 
         <ServiceCard
           displayName="Hulu"
           url="https://hulu.com"
-          imageUrl="https://bananabrann.nyc3.cdn.digitaloceanspaces.com/tv.bananabrann.dev%2Fhulu-450x174jpg.jpg"
+          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/hulu-450x174.jpg"
         />
 
         <ServiceCard
           displayName="HBO Max"
           url="https://www.hbomax.com/"
-          imageUrl="https://bananabrann.nyc3.cdn.digitaloceanspaces.com/tv.bananabrann.dev%2Fhbo-450x174.jpg"
+          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/hbo-450x174.jpg"
         />
       </section>
 
