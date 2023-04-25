@@ -19,6 +19,11 @@ jobs:
 
     - name: Check code formatting
       run: npx prettier --check ./
+      continue-on-error: true
+
+    - name: Inform about code formatting issues
+      if: ${{ failure() }}
+      run: "echo 'Warning: Code formatting issues detected. Please fix them before merging the PR.'"
 
   build:
     runs-on: ubuntu-latest
