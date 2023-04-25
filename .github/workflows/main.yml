@@ -45,8 +45,8 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: dist
-        path: dist/
+        name: build
+        path: build/
         retention-days: 7
 
   test:
@@ -67,8 +67,8 @@ jobs:
     - name: Download build artifacts
       uses: actions/download-artifact@v2
       with:
-        name: dist
-        path: dist/
+        name: build
+        path: build/
 
     - name: Run tests
       run: npm run test
