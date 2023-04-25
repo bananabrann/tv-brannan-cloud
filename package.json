@@ -1,12 +1,8 @@
 {
-  "name": "tv.bananabrann.dev",
-  "version": "1.0.3",
+  "name": "tv.brannan.cloud",
+  "version": "1.4",
   "private": true,
-  "author": {
-    "email": "hi@bananabrann.dev",
-    "name": "bananabrann",
-    "url": "https://bananabrann.dev"
-  },
+  "author": "@bananabrann",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

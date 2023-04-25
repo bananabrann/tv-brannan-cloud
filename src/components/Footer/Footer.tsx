@@ -9,7 +9,7 @@ const Footer: FC = () => {
       try {
         const response = await fetch(
           // Don't use the CDN endpoint
-          "https://bananabrann.nyc3.digitaloceanspaces.com/tv.bananabrann.dev%2FVERSION-tv-bananabrann-dev.txt",
+          "https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/VERSION.txt",
           { mode: "cors" },
         );
         const text = await response.text();
@@ -27,8 +27,8 @@ const Footer: FC = () => {
     <div className={footerStyles.container}>
       <div className={footerStyles.content}>
         <small>
-          <a href="https://gitlab.com/bananabrann/tv-bananabrann-dev/">
-            View source code
+          <a href="https://github.com/bananabrann/tv-brannan-cloud/tree/main">
+            View source
           </a>
         </small>
         <small>|</small>

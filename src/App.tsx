@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <header className={styles.header}>
-        <Logo />
+        {/* <Logo /> */}
       </header>
 
       <section className={styles.main}>
