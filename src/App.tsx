@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "./components/Footer/Footer";
-import Logo from "./components/Logo/Logo";
+// import Logo from "./components/Logo/Logo";
 import ServiceCard from "./components/ServiceCard/ServiceCard";
 import styles from "./App.module.css";
 import "./App.css";
