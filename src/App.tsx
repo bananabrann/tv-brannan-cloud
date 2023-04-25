@@ -36,6 +36,12 @@ function App() {
           url="https://www.hbomax.com/"
           imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/hbo-450x174.jpg"
         />
+
+        <ServiceCard
+          displayName="YouTube"
+          url="https://youtube.com"
+          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/youtube-450x174.jpg"
+        />
       </section>
 
       <Footer />
