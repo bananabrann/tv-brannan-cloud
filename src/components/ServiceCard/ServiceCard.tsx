@@ -12,14 +12,14 @@ const ServiceCard: FC<Props> = ({ displayName, url, loginUrl, imageUrl }) => {
   return (
     <a
       href={url}
-      target="_blank"
+      target=""
       rel="noreferrer"
       className={`${styles.container} ${styles.shiny}`}
     >
       <div className="">
         <img
           src={imageUrl}
-          alt={`Logo for ${displayName}`}
+          alt={`${displayName}`}
         />
       </div>
     </a>
