@@ -21,3 +21,7 @@
 .main > a {
   margin-top: calc(10px + 1.2vw);
 }
+
+/* .notes {
+  white-space: pre-wrap;
+} */
