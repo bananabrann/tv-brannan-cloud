@@ -16,31 +16,31 @@ function App() {
         <ServiceCard
           displayName="Netflix"
           url="https://netflix.com"
-          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/netflix-450x174.jpg"
+          imageUrl="https://files.brannan.cloud/tv/netflix-450x174.jpg"
         />
 
         <ServiceCard
           displayName="Peacock"
           url="https://peacock.com"
-          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/peacock-450x174.jpg"
+          imageUrl="https://files.brannan.cloud/tv/peacock-450x174.jpg"
         />
 
         <ServiceCard
           displayName="Hulu"
           url="https://hulu.com"
-          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/hulu-450x174.jpg"
+          imageUrl="https://files.brannan.cloud/tv/hulu-450x174.jpg"
         />
 
         <ServiceCard
           displayName="HBO Max"
           url="https://www.hbomax.com/"
-          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/hbo-450x174.jpg"
+          imageUrl="https://files.brannan.cloud/tv/hbo-450x174.jpg"
         />
 
         <ServiceCard
           displayName="YouTube"
           url="https://youtube.com"
-          imageUrl="https://brannan.cloud.nyc3.digitaloceanspaces.com/tv/youtube-450x174.jpg"
+          imageUrl="https://files.brannan.cloud/tv/youtube-450x174.jpg"
         />
       </section>
 
