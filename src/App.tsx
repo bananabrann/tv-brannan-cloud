@@ -6,10 +6,11 @@ import styles from "./App.module.css";
 import "./App.css";
 
 function App() {
-  const [notes, setNotes] = useState<string>("");
+  // const [notes, setNotes] = useState<string>("");
   const [time, setTime] = useState<string>(formatDateTime(Date.now()));
 
   useEffect(() => {
+    /*
     async function fetchNotes() {
       try {
         const response = await fetch(
@@ -27,6 +28,7 @@ function App() {
     }
 
     fetchNotes();
+    */
 
     // Update the time every 30 seconds.
     const updateDateTime = () => setTime(formatDateTime(Date.now()));
