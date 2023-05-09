@@ -1,8 +1,8 @@
 {
   "name": "tv.brannan.cloud",
-  "version": "1.6",
+  "version": "1.0.0",
   "private": true,
-  "author": "@bananabrann",
+  "author": "https://github.com/bananabrann",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
