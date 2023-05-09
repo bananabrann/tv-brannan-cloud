@@ -3,8 +3,7 @@ import footerStyles from "./footer.module.css";
 
 const Footer: FC = () => {
   const environment = process.env.NODE_ENV === "production" ? "P" : "U";
-  const buildDate = "23.4";
-  const appVersion = "1.6";
+  const appVersion = "1.0.0";
 
   return (
     <div className={footerStyles.container}>
@@ -15,7 +14,7 @@ const Footer: FC = () => {
           </a>
         </small>
         <small>|</small>
-        <small>{appVersion} {buildDate} {environment}</small>
+        <small>{appVersion} {environment}</small>
       </div>
 
       <div className={footerStyles.rainbow} />
