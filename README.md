@@ -1,4 +1,4 @@
-# tv.bananabrann.dev
+# tv.brannan.cloud
 
 This project is a simple website to make navigating to various streaming services simple and easy. This site is loaded directly onto an Arduino, and is opened automatically when they turn their TV on.
 
