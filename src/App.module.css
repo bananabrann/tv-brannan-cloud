@@ -8,20 +8,22 @@
 
 .main {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column; /* stack the cards vertically on small screens */
   align-items: center;
   justify-content: space-around;
-  height: 80vh;
   gap: 10px;
   max-width: 1100px;
   width: 100vw;
   margin: 0 auto;
 }
 
+@media only screen and (min-width: 600px) {
+  .main {
+    flex-direction: row; /* use the original layout on larger screens */
+    flex-wrap: wrap;
+  }
+}
+
 .main > a {
   margin-top: calc(10px + 1.2vw);
 }
-
-/* .notes {
-  white-space: pre-wrap;
-} */

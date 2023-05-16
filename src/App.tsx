@@ -96,9 +96,9 @@ function App() {
         />
 
         <ServiceCard
-          displayName="Peacock"
-          url="https://peacock.com"
-          imageUrl="https://files.brannan.cloud/tv/peacock-450x174.jpg"
+          displayName="YouTube"
+          url="https://youtube.com"
+          imageUrl="https://files.brannan.cloud/tv/youtube-450x174.jpg"
         />
 
         <ServiceCard
@@ -108,15 +108,15 @@ function App() {
         />
 
         <ServiceCard
-          displayName="HBO Max"
-          url="https://www.hbomax.com/"
-          imageUrl="https://files.brannan.cloud/tv/hbo-450x174.jpg"
+          displayName="Peacock"
+          url="https://peacock.com"
+          imageUrl="https://files.brannan.cloud/tv/peacock-450x174.jpg"
         />
 
         <ServiceCard
-          displayName="YouTube"
-          url="https://youtube.com"
-          imageUrl="https://files.brannan.cloud/tv/youtube-450x174.jpg"
+          displayName="HBO Max"
+          url="https://www.hbomax.com/"
+          imageUrl="https://files.brannan.cloud/tv/hbo-450x174.jpg"
         />
       </section>
 

@@ -1,13 +1,12 @@
 .container {
-  position: fixed;
-  bottom: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-top: 1em;
 }
 
 .content {
-  padding: 4px;
+  padding: 1vw; /* replaced px with vw for responsiveness */
   font-weight: 700;
   display: flex;
   flex-direction: row;
