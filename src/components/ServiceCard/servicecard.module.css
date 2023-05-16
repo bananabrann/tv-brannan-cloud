@@ -3,11 +3,19 @@
   text-decoration: none;
   display: flex;
   flex-direction: column;
+  width: 90%; /* allow some margin on the sides */
   max-width: 450px;
+  margin: 0 auto; /* center the card */
   background-color: #252627;
-  /* padding: 0.05rem; */
   border-radius: 0.85rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 95%; /* use more space on small screens */
+  }
+}
+
 .container:hover {
   color: white;
   background-color: gold;
