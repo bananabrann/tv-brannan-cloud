@@ -83,6 +83,8 @@ function App() {
 
   return (
     <div className="App">
+      <Footer />
+
       <header className={styles.header}>
         {/* <Logo /> */}
         <h2>{time}</h2>
@@ -113,7 +115,7 @@ function App() {
           url="https://peacock.com"
           imageUrl="https://files.brannan.cloud/tv/peacock-450x174.jpg"
         />
-      */}
+        */}
 
         {/*
         <ServiceCard
@@ -130,7 +132,6 @@ function App() {
         />
       </section>
 
-      <Footer />
     </div>
   );
 }
