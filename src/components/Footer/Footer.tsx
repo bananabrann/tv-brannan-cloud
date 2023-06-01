@@ -3,7 +3,7 @@ import footerStyles from "./footer.module.css";
 
 const Footer: FC = () => {
   const environment = process.env.NODE_ENV === "production" ? "P" : "U";
-  const appVersion = "1.0.2";
+  const appVersion = "1.0.3";
 
   return (
     <div className={footerStyles.container}>
