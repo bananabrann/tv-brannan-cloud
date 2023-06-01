@@ -3,13 +3,13 @@ import footerStyles from "./footer.module.css";
 
 const Footer: FC = () => {
   const environment = process.env.NODE_ENV === "production" ? "P" : "U";
-  const appVersion = "1.0.1";
+  const appVersion = "1.0.2";
 
   return (
     <div className={footerStyles.container}>
       <div className={footerStyles.content}>
         <small>
-          <a href="https://github.com/bananabrann/tv-brannan-cloud/tree/main">
+          <a href="https://github.com/bananabrann/tv.brannan.cloud/tree/main">
             View source
           </a>
         </small>
