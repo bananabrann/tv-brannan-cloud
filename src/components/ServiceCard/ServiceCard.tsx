@@ -18,6 +18,7 @@ const ServiceCard: FC<Props> = ({ displayName, url, loginUrl, imageUrl }) => {
     >
       <div className="">
         <img
+          data-testid="service-card-image"
           src={imageUrl}
           alt={`${displayName}`}
         />
