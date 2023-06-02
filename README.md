@@ -1,15 +1,38 @@
-# tv.brannan.cloud
+# create-svelte
 
-This project is a simple website to make navigating to various streaming services simple and easy. This site is loaded directly onto a microprocessor, and is opened automatically when they turn their TV on.
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-# Setting up your dev environment
+## Creating a project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). After cloning and installing dependencies, simply call `npm start` or `npm run dev`.
+If you're seeing this, you've probably already done this step. Congrats!
 
-## How to deploy
+```bash
+# create a new project in the current directory
+npm create svelte@latest
 
-The project uses DigitalOcean for its hosting, and is configured to **automatically deploy from the main branch.**
+# create a new project in my-app
+npm create svelte@latest my-app
+```
 
-## Learn more
+## Developing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started) or repo [Create React App](https://github.com/facebook/create-react-app). All the base scripts are available.
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
