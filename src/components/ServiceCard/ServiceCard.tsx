@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "./servicecard.module.css";
+import styles from "./ServiceCard.module.css";
 
 interface Props {
   displayName: string;

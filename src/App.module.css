@@ -1,9 +1,14 @@
 .header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding-left: 4vw;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* media query on small screens below 400px */
+@media only screen and (max-width: 400px) {
+  .header {
+    font-size: 1.25rem;
+  }
 }
 
 .main {
@@ -19,7 +24,7 @@
 
 @media only screen and (min-width: 600px) {
   .main {
-    flex-direction: row; /* use the original layout on larger screens */
+    flex-direction: row;
     flex-wrap: wrap;
   }
 }
