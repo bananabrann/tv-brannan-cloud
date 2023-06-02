@@ -1,0 +1,28 @@
+/* Variables and mixins declared here will be available in all other SCSS files */
+
+$brand-primary-color: #20f0b1;
+$brand-secondary-color: #e7f162;
+$success-color: #28a745;
+$info-color: #17a2b8;
+$warning-color: #ffc107;
+$danger-color: #dc3545;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+
+$primary-font-family: "Geologica", sans-serif;
+
+// Mixin that applies a gentle transition to the given property
+@mixin gentle-transition($property: all, $duration: 0.15s, $timing-function: ease-in-out) {
+  -webkit-transition: $property $duration $timing-function;
+  -moz-transition: $property $duration $timing-function;
+  -ms-transition: $property $duration $timing-function;
+  -o-transition: $property $duration $timing-function;
+  transition: $property $duration $timing-function;
+}
+
+// Base underline properties
+@mixin underline($color: $brand-primary-color, $thickness: 2px, $offset: 3px) {
+  text-decoration: solid underline $color;
+  text-decoration-thickness: $thickness;
+  text-underline-offset: $offset;
+}
