@@ -17,14 +17,17 @@
     "@sveltejs/kit": "^1.5.0",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.8.1",
+    "sass": "^1.62.0",
     "svelte": "^3.54.0",
     "svelte-check": "^3.0.1",
+    "svelte-preprocess": "^5.0.3",
     "tslib": "^2.4.1",
     "typescript": "^5.0.0",
     "vite": "^4.3.0",
-    "vitest": "^0.25.3",
-    "sass": "^1.62.0",
-    "svelte-preprocess": "^5.0.3"
+    "vitest": "^0.25.3"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "svelte-material-icons": "^3.0.4"
+  }
 }
