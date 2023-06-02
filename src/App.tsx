@@ -83,6 +83,8 @@ function App() {
 
   return (
     <div className="App">
+      <Footer />
+
       <header className={styles.header}>
         {/* <Logo /> */}
         <h2>{time}</h2>
@@ -107,20 +109,29 @@ function App() {
           imageUrl="https://files.brannan.cloud/tv/hulu-450x174.jpg"
         />
 
+        {/*         
         <ServiceCard
           displayName="Peacock"
           url="https://peacock.com"
           imageUrl="https://files.brannan.cloud/tv/peacock-450x174.jpg"
         />
+        */}
 
+        {/*
         <ServiceCard
           displayName="HBO Max"
           url="https://www.hbomax.com/"
           imageUrl="https://files.brannan.cloud/tv/hbo-450x174.jpg"
         />
+        */}
+
+        <ServiceCard
+          displayName="Paramount+"
+          url="https://www.paramountplus.com/"
+          imageUrl="https://files.brannan.cloud/tv/paramount-450x174.jpg"
+        />
       </section>
 
-      <Footer />
     </div>
   );
 }

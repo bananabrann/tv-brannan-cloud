@@ -21,6 +21,10 @@
   background-color: gold;
   box-shadow: rgb(255, 255, 255) 0px 0px 60px 20px;
 }
+.container img {
+  max-width: 100%;
+  height: auto;
+}
 
 @keyframes sheen {
   100% {

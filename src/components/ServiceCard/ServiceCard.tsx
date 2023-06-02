@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "./servicecard.module.css";
+import styles from "./ServiceCard.module.css";
 
 interface Props {
   displayName: string;
@@ -18,6 +18,7 @@ const ServiceCard: FC<Props> = ({ displayName, url, loginUrl, imageUrl }) => {
     >
       <div className="">
         <img
+          data-testid="service-card-image"
           src={imageUrl}
           alt={`${displayName}`}
         />
