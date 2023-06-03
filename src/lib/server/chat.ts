@@ -4,6 +4,15 @@ import initialPrompt from "./contextPrompt.json";
 import { fail } from "@sveltejs/kit";
 import axios, { AxiosError } from "axios";
 
+console.log("Just once?")
+
+const configuration = new Configuration({
+  organization: OPENAI_ORGANIZATION_ID,
+  apiKey: OPENAI_API_KEY
+});
+const openai = new OpenAIApi(configuration);
+
+
 // Array of chat agents. This is so that we can have multiple chat agents
 // at the same time. I do this so that we can have multiple chat agents
 // running at the same time. It shouldn't happen, but it's good to be
@@ -21,28 +30,17 @@ interface ChatMessage {
 // ChatAgent class for interacting with the OpenAI API.
 class ChatAgent {
   private id: string;
-  private configuration: Configuration;
-  private openai: OpenAIApi;
   private messages: Array<ChatMessage>;
-  private context: string;
 
   constructor() {
     try {
-      const configuration = new Configuration({
-        organization: OPENAI_ORGANIZATION_ID,
-        apiKey: OPENAI_API_KEY
-      });
-
       this.id = Math.random().toString(36).substring(7);
-      this.configuration = configuration;
-      this.openai = new OpenAIApi(this.configuration);
       this.messages = [];
-      this.context = initialPrompt.text;
 
       // Adds the initial prompt to the messages array
-      this.addMessage(this.context, "system");
+      this.addMessage(initialPrompt.text, "system");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       throw new Error("Failed to initialize ChatAgent");
     }
   }
@@ -52,7 +50,7 @@ class ChatAgent {
     this.addMessage(message, "user");
 
     try {
-      await this.openai
+      await openai
         .createChatCompletion({
           model: "gpt-3.5-turbo",
           messages: this.getMessages()
@@ -107,12 +105,12 @@ class ChatAgent {
 }
 
 export function createChatAgent() {
-  console.log("Initializing new ChatAgent...");
   const agent = new ChatAgent();
   agents.push(agent);
-  console.log(`Agents on: ${agents.length}`);
 
-  return agent.getId();
+  console.log(`Initialized new ChatAgent. Agents online: ${agents.length}`);
+
+  return agent;
 }
 
 export function sendMessageByAgentId(message: string, agentId: string) {

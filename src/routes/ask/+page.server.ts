@@ -3,19 +3,13 @@ import { createChatAgent, sendMessageByAgentId } from "$lib/server/chat";
 import { fail } from "@sveltejs/kit"
 
 export function load({ getClientAddress, request }) {
-  // Check if client is on a whitelist of IPs
-  console.log(`Connected to ${getClientAddress()}`);
+  // TODO - Check if client is on a whitelist of IPs
+  
 
-  const chatAgentId = createChatAgent();
-  console.log(`ChatAgent ID: ${chatAgentId}`);
-
-  // dev ---
-  sendMessageByAgentId("Hello", chatAgentId);
-
-  // -------
 
   return {
-    chatAgentId: chatAgentId
+    chatAgentId: ""
+
   }
 
 }
