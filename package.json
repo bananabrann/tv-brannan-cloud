@@ -28,6 +28,7 @@
   },
   "type": "module",
   "dependencies": {
+    "openai": "^3.2.1",
     "svelte-material-icons": "^3.0.4"
   }
 }
