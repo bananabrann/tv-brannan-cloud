@@ -1,15 +1,14 @@
 <script>
-  let text = "";
-
-  // async function sendChatMessage() {
-  //   const response = await fetch("/ask");
-  //   text = await response.json();
-  //   console.log(response);
-  // }
+  export let data;
 </script>
 
 <h2>Ask a question</h2>
 
-{#if text !== undefined}
-  <p>{text}</p>
-{/if}
+
+<form action="?/send" method="POST">
+  <label for="question">Question
+    <input type="text" autocomplete="off" id="question"  name="question-content" />
+  </label>
+  <button type="submit">Send message</button>
+</form>
+<small>Chatting with agent <b>{data.chatAgentId}</b></small>

@@ -1,50 +1,124 @@
 import { Configuration, OpenAIApi } from "openai";
 import { OPENAI_API_KEY, OPENAI_ORGANIZATION_ID } from "$env/static/private";
+import initialPrompt from "./contextPrompt.json";
+import { fail } from "@sveltejs/kit";
+import axios, { AxiosError } from "axios";
 
-export function initializeChatGPT() {
-  console.log("Initializing ChatGPT...");
+// Array of chat agents. This is so that we can have multiple chat agents
+// at the same time. I do this so that we can have multiple chat agents
+// running at the same time. It shouldn't happen, but it's good to be
+// prepared.
+let agents: Array<ChatAgent> = [];
 
-  const configuration = new Configuration({
-    organization: OPENAI_ORGANIZATION_ID,
-    apiKey: OPENAI_API_KEY,
-  });
+// ChatMessage interface for storing chat messages from OpenAI API.
+// "user" is messages from the human, "assistant" is the response from
+// ChatGPT, and "system" is the initial prompt or additional context.
+interface ChatMessage {
+  role: "user" | "system" | "assistant";
+  content: string;
+}
 
-  const openai = new OpenAIApi(configuration);
+// ChatAgent class for interacting with the OpenAI API.
+class ChatAgent {
+  private id: string;
+  private configuration: Configuration;
+  private openai: OpenAIApi;
+  private messages: Array<ChatMessage>;
+  private context: string;
 
-  // Code from the tutorial that used the OpenAI API
-  /*
-  
-    const userInterface = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
+  constructor() {
+    try {
+      const configuration = new Configuration({
+        organization: OPENAI_ORGANIZATION_ID,
+        apiKey: OPENAI_API_KEY
+      });
 
-    userInterface.prompt();
+      this.id = Math.random().toString(36).substring(7);
+      this.configuration = configuration;
+      this.openai = new OpenAIApi(this.configuration);
+      this.messages = [];
+      this.context = initialPrompt.text;
 
-    console.log("Welcome!");
+      // Adds the initial prompt to the messages array
+      this.addMessage(this.context, "system");
+    } catch (error) {
+      console.log(error);
+      throw new Error("Failed to initialize ChatAgent");
+    }
+  }
 
-    userInterface.on("line", async (input) => {
-      await openai
+  // Send a message to the OpenAI API.
+  async sendMessage(message: string) {
+    this.addMessage(message, "user");
+
+    try {
+      await this.openai
         .createChatCompletion({
           model: "gpt-3.5-turbo",
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are TVAI, a chatbot that helps my grandma find what TV shows and movies are on what TV streaming service provider. Grandma has access to Hulu, Netflix, Paramount+, and YouTube. If grandma needs tech support, tell grandma to ask for Lee or Cynthia. If you mention a service provider, wrap the word in <b> tags. Do not use complicated, technical language. Do not prompt the user for more responses. Do not ask questions.",
-            },
-            { role: "user", content: input },
-          ],
+          messages: this.getMessages()
         })
         .then((res) => {
-          console.log(res.data.choices[0].message.content);
-          userInterface.prompt();
-        })
-        .catch((e) => {
-          console.log(e);
+          const responseMessage = res?.data?.choices[0]?.message?.content;
+          console.log(responseMessage);
         });
-    });
-  */
+    } catch (error: unknown | AxiosError | Error) {
+      const failMessage = "Failed to send message to ChatGPT.";
 
+      // Check if Axios error
+      if (axios.isAxiosError(error)) {
+        console.error(error.response?.data?.error?.code);
 
+        return fail(500, {
+          error: error.response?.data?.error?.code ?? error,
+          description: failMessage
+        });
+
+        // Just a stock error
+      } else {
+        return fail(500, {
+          error: error instanceof Error ? error.message : "Unknown error.",
+          description: failMessage
+        });
+      }
+    }
+  }
+
+  // Add message to the local memory of messages in order to provide
+  // context to ChatGPT.
+  addMessage(message: string, role: "user" | "assistant" | "system") {
+    const messageObject: ChatMessage = {
+      role: role,
+      content: message
+    };
+
+    this.messages.push(messageObject);
+  }
+
+  // Getter and setters.
+
+  getMessages() {
+    return this.messages;
+  }
+  getId() {
+    return this.id;
+  }
+
+  // TODO - delete agent when user leaves the page.
+}
+
+export function createChatAgent() {
+  console.log("Initializing new ChatAgent...");
+  const agent = new ChatAgent();
+  agents.push(agent);
+  console.log(`Agents on: ${agents.length}`);
+
+  return agent.getId();
+}
+
+export function sendMessageByAgentId(message: string, agentId: string) {
+  const agent = agents.find((agent) => agent.getId() === agentId);
+  if (!agent) throw new Error("ChatAgent not found");
+
+  agent.sendMessage(message);
+  // console.log(`Sending message to ChatGPT: ${message}`);
 }
