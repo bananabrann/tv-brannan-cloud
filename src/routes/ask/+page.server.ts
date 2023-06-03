@@ -1,7 +1,10 @@
 import { WHITELISTED_USERS } from "$env/static/private";
-import { sendMessage } from "$lib/server/chat";
-import { fail } from "@sveltejs/kit";
+import { agentSessionId, sendMessage } from "$lib/server/chat";
+import { ActionFailure, fail } from "@sveltejs/kit";
 import initialPrompt from "$lib/server/contextPrompt.json";
+import type ChatMessage from "$lib/types/ChatMessage.interface";
+
+const SESSION_STORAGE_CHAT_HISTORY_KEY = "chat-history";
 
 export function load({ getClientAddress, request }) {
   // Check if client is on a whitelist of IPs
@@ -10,7 +13,8 @@ export function load({ getClientAddress, request }) {
   const clientIp = getClientAddress();
 
   return {
-    isWhiteListed: WHITELISTED_USERS.includes(clientIp)
+    isWhiteListed: WHITELISTED_USERS.includes(clientIp),
+    agentSessionId: agentSessionId
   };
 }
 
@@ -24,7 +28,24 @@ export const actions = {
 
     try {
       // Make OpenAI API call
-      const response = await sendMessage(prompt, [], getClientAddress());
+      const response = await sendMessage(prompt, [], getClientAddress())
+
+      console.log("here is the response ---------------")
+      
+      
+
+      // addMessageToSessionStorage(response);
+      console.log(response);
+
+      console.log("?")
+
+      return {
+        status: 200,
+        success: true
+      }
+
+
+
     } catch (error) {
       return fail(500, {
         error: error instanceof Error ? error.message : "Unknown error.",
@@ -36,6 +57,27 @@ export const actions = {
   // TODO - delete agent when user leaves the page.
 };
 
-function addInitialMessage() {
-  // TODO - add initial message
+function verifySessionStorage() {
+  const data = window.sessionStorage.getItem(SESSION_STORAGE_CHAT_HISTORY_KEY);
+
+  if (!data) {
+    window.sessionStorage.setItem(
+      SESSION_STORAGE_CHAT_HISTORY_KEY,
+      JSON.stringify([{ content: initialPrompt.text, role: "system" }])
+    );
+  }
+}
+
+function addMessageToSessionStorage(message: ChatMessage) {
+  verifySessionStorage();
+
+  const data = window.sessionStorage.getItem(SESSION_STORAGE_CHAT_HISTORY_KEY);
+
+  if (!data) throw new Error("Session storage is undefined.");
+
+  const chatHistory = JSON.parse(data) as ChatMessage[];
+
+  chatHistory.push(message);
+
+  window.sessionStorage.setItem(SESSION_STORAGE_CHAT_HISTORY_KEY, JSON.stringify(chatHistory));
 }

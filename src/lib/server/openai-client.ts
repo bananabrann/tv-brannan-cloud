@@ -15,25 +15,38 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-// Array of chat agents. This is so that we can have multiple chat agents
-// at the same time. I do this so that we can have multiple chat agents
-// running at the same time. It shouldn't happen, but it's good to be
-// prepared.
-// let messageStores: Array<MessageStore> = [];
+export type CompletionProps = {
+  prompt: string;
+  model: string;
+  max_tokens: number;
+  temperature: number;
+};
 
 // Send a message to the OpenAI API. Returns the response message.
-export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
+export async function createChatCompletion(
+  props: CompletionProps,
+  history: ChatMessage[] = [],
+  ip: string = ""
+): Promise<string> {
   // Check if user is from a whitelisted IP
-  if (!WHITELISTED_USERS.includes(ip)) {
-    console.log(`User IP "${ip}" attempted to send a message, but is not whitelisted.`);
+  //   if (!WHITELISTED_USERS.includes(ip)) {
+  //     console.log(`User IP "${ip}" attempted to send a message, but is not whitelisted.`);
 
-    return fail(403, {
-      error: "Forbidden",
-      description: "User is not grandma."
-    });
-  }
+  //     return fail(403, {
+  //       error: "Forbidden",
+  //       description: "User is not grandma."
+  //     });
+  //   }
   try {
-    
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      temperature: props.temperature ?? 0.7,
+      max_tokens: props.max_tokens ?? 150,
+      messages: [...history, { role: "user", content: props.prompt }]
+    });
+
+    return response?.data?.choices[0]?.message?.content ?? "";
+
     /*
 
     await openai
