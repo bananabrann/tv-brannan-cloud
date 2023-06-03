@@ -1,11 +1,9 @@
 <script>
-  import { fly } from "svelte/transition";
   import StreamingService from "../StreamingService.svelte";
 </script>
 
 <br />
 <br />
-
 
 <section id="streaming-providers-container">
   <StreamingService
@@ -35,7 +33,7 @@
 
 <section />
 
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<!-- <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
 
 <style>
   #streaming-providers-container {

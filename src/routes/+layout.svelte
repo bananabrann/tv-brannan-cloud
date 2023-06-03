@@ -6,7 +6,7 @@
   const version = "1.1.0";
 </script>
 
-<div class="line"></div>
+<div class="line" />
 
 <main>
   <nav>
@@ -16,7 +16,7 @@
       <span>|</span>
       <a href="/ask">Ask Lee</a>
     </div>
-  
+
     <div>
       <span class="github-nav-icon">
         <a target="_blank" href="https://github.com/bananabrann/tv.brannan.cloud">
@@ -27,10 +27,9 @@
     </div>
     <!-- <a href={`https://github.com/bananabrann/tv.brannan.cloud/releases/tag/v&#x24;{version}`}>{version}</a -->
   </nav>
-  
+
   <slot />
 </main>
-
 
 <style lang="scss">
   main {
