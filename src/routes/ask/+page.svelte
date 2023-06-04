@@ -14,7 +14,7 @@
   let isCreating = false;
 
   function addMessageToArray(message: ChatMessage) {
-    messages = [...messages, message]
+    messages = [...messages, message];
     console.log(messages);
   }
 </script>
@@ -58,10 +58,23 @@
     disabled={isCreating}
     required
     bind:value={inputTextMessage}
+    on:change={(event) => {}}
   />
+
+  <!-- Message history to provide memory to ChatGPT. This is invisible to the user. -->
+  <textarea name="message-history" id="message-history" cols="30" rows="10">
+    {JSON.stringify(messages)}
+  </textarea>
+
   <button type="submit">Send message</button>
 </form>
 
 <!-- <Chatbox bind:inputTextMessage bind:messages {sendMessage} /> -->
 
 <small>Chatting with agent <b>{data.agentSessionId}</b></small>
+
+<style>
+  #message-history {
+    display: none;
+  }
+</style>
