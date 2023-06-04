@@ -42,4 +42,23 @@
 
 <button>Button</button>
 
+<form action="">
+  <input type="text" value="Some value text" />
+  <input type="text" value="Disabled input" disabled />
+  <br>
+  <textarea name="" id="" cols="30" rows="10"></textarea>
+</form>
+
+<hr>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 <!-- TODO: Form elements -->

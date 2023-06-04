@@ -35,6 +35,11 @@ small {
   font-weight: 100; // Check font family import if not working
 }
 
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 h1,
 h2,
 h3,
@@ -104,4 +109,18 @@ button {
   }
 }
 
-// TODO - Forms
+input,
+textarea {
+  padding: 0.5rem;
+  font-family: $primary-font-family;
+  border: adjust-color($dark-color, $lightness: -1%) 3px solid;
+  margin: 0.5rem auto;
+  border-radius: 0.5rem;
+  font-size: inherit;
+
+  &:focus {
+    outline: none;
+    border: $brand-primary-color 3px solid;
+  }
+}
+

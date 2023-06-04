@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import type { MessageBlock as Message } from "$lib/types/MessageBlock";
   import MessageBlock from "$lib/components/MessageBlock.svelte";
   export let inputTextMessage: String;
@@ -23,4 +23,4 @@
     />
     <button type="submit">Send message</button>  
   </form>
-</div>
+</div> -->

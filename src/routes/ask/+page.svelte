@@ -5,6 +5,7 @@
   // import type ChatMessage from "$lib/types/ChatMessage.interface.js";
   import { enhance } from "$app/forms";
   import { getUniqueId } from "$lib/utils.js";
+  import MessageBlock from "$lib/components/MessageBlock.svelte";
 
   export let data;
 
@@ -21,59 +22,80 @@
 
 <h2>Find a show or ask a question</h2>
 
-{#each messages as message}
-  <p>{message.content}</p>
-{/each}
+<p><b>Type the name</b> of a show or movie to see what service, or simply ask any question!</p>
 
-<form
-  action="?/send"
-  method="POST"
-  class=""
-  use:enhance={() => {
-    isCreating = true;
-    addMessageToArray({
-      role: "user",
-      content: inputTextMessage
-    });
+<hr />
 
-    return async ({ update, result }) => {
-      await update();
-      isCreating = false;
+<section id="chatbox">
+  {#each messages as message}
+    <!-- <p>{message.content}</p> -->
+    <MessageBlock {message} />
+  {/each}
 
-      // TODO - Make type safe
+  <form
+    action="?/send"
+    method="POST"
+    class=""
+    use:enhance={() => {
+      isCreating = true;
       addMessageToArray({
-        // @ts-ignore
-        role: result.data.message.content.role,
-        // @ts-ignore
-        content: result.data.message.content.content
+        role: "user",
+        content: inputTextMessage
       });
-    };
-  }}
->
-  <input
-    type="text"
-    autocomplete="off"
-    id="question"
-    name="question-content"
-    disabled={isCreating}
-    required
-    bind:value={inputTextMessage}
-    on:change={(event) => {}}
-  />
 
-  <!-- Message history to provide memory to ChatGPT. This is invisible to the user. -->
-  <textarea name="message-history" id="message-history" cols="30" rows="10">
-    {JSON.stringify(messages)}
-  </textarea>
+      return async ({ update, result }) => {
+        await update();
+        isCreating = false;
 
-  <button type="submit">Send message</button>
-</form>
+        // TODO - Make type safe
+        addMessageToArray({
+          // @ts-ignore
+          role: result.data.message.content.role,
+          // @ts-ignore
+          content: result.data.message.content.content
+        });
+      };
+    }}
+  >
+    <input
+      type="text"
+      autocomplete="off"
+      id="question"
+      name="question-content"
+      disabled={isCreating}
+      required
+      bind:value={inputTextMessage}
+      on:change={(event) => {}}
+    />
+
+    <!-- Message history to provide memory to ChatGPT. This is invisible to the user. -->
+    <textarea name="message-history" id="message-history" cols="30" rows="10">
+      {JSON.stringify(messages)}
+    </textarea>
+
+    <button id="chat-submit-button" type="submit" disabled={isCreating}>Send message</button>
+  </form>
+</section>
 
 <!-- <Chatbox bind:inputTextMessage bind:messages {sendMessage} /> -->
 
 <small>Chatting with agent <code>{data.agentSessionId}</code></small>
 
-<style>
+<style lang="scss">
+  #chatbox {
+    form {
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      // justify-content: center;
+
+      textarea {
+        width: 90%;
+        max-width: 600px;
+      }
+    }
+  }
+
   #message-history {
     display: none;
   }

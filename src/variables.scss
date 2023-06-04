@@ -27,3 +27,10 @@ $monospace-font-family: "Ubuntu Mono", monospace;
   text-decoration-thickness: $thickness;
   text-underline-offset: $offset;
 }
+
+// Base box-shadow properties
+@mixin box-shadow() {
+  -webkit-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.53);
+  -moz-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.53);
+  box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.53);
+}
