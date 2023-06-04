@@ -71,7 +71,7 @@
 
 <!-- <Chatbox bind:inputTextMessage bind:messages {sendMessage} /> -->
 
-<small>Chatting with agent <b>{data.agentSessionId}</b></small>
+<small>Chatting with agent <code>{data.agentSessionId}</code></small>
 
 <style>
   #message-history {

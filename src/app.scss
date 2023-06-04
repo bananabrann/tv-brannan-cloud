@@ -3,6 +3,7 @@
 /* Assumes default HTML styling is applied */
 
 @import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 body {
   font-family: $primary-font-family;
@@ -73,6 +74,15 @@ a {
     @include gentle-transition();
     color: $brand-primary-color;
   }
+}
+
+code {
+  font-family: $monospace-font-family;
+  font-size: 105%;
+  font-weight: 700;
+  padding: 4px 0.5rem;
+  background-color: adjust-color($dark-color, $lightness: 5%);
+  border-radius: 0.55rem;
 }
 
 button {

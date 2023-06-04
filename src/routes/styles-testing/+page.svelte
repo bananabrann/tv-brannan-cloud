@@ -34,8 +34,12 @@
 
 <a href="#">A link here.</a>
 
-<button>Button</button>
+<br />
+
+<p>Some <code>inline code</code>.</p>
 
 <hr />
+
+<button>Button</button>
 
 <!-- TODO: Form elements -->
