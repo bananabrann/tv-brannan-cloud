@@ -3,6 +3,7 @@ import { agentSessionId, sendMessage } from "$lib/server/chat";
 import { ActionFailure, fail } from "@sveltejs/kit";
 import initialPrompt from "$lib/server/contextPrompt.json";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
+import MessageBlock from "$lib/components/MessageBlock.svelte";
 
 const SESSION_STORAGE_CHAT_HISTORY_KEY = "chat-history";
 
@@ -27,25 +28,16 @@ export const actions = {
     if (!prompt) throw new Error("Prompt is undefined");
 
     try {
-      // Make OpenAI API call
-      const response = await sendMessage(prompt, [], getClientAddress())
-
-      console.log("here is the response ---------------")
+      const response = await sendMessage(prompt, [], getClientAddress());
       
-      
-
-      // addMessageToSessionStorage(response);
-      console.log(response);
-
-      console.log("?")
-
       return {
         status: 200,
-        success: true
-      }
-
-
-
+        success: true,
+        message: {
+          role: "assistant",
+          content: response
+        }
+      };
     } catch (error) {
       return fail(500, {
         error: error instanceof Error ? error.message : "Unknown error.",
@@ -57,6 +49,7 @@ export const actions = {
   // TODO - delete agent when user leaves the page.
 };
 
+/*
 function verifySessionStorage() {
   const data = window.sessionStorage.getItem(SESSION_STORAGE_CHAT_HISTORY_KEY);
 
@@ -81,3 +74,4 @@ function addMessageToSessionStorage(message: ChatMessage) {
 
   window.sessionStorage.setItem(SESSION_STORAGE_CHAT_HISTORY_KEY, JSON.stringify(chatHistory));
 }
+*/

@@ -33,25 +33,19 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
     });
   }
   try {
-    
-    /*
-
-    await openai
+    return await openai
       .createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [...history, { role: "user", content: message }]
       })
       .then((res) => {
         const responseMessage = res?.data?.choices[0]?.message?.content;
-        console.log(responseMessage);
-        return responseMessage;
-
+        // console.log(responseMessage);
         return {
           role: "assistant",
           content: responseMessage
         } as ChatMessage;
       });
-      */
   } catch (error: unknown | AxiosError | Error) {
     const failMessage = "Failed to send message to ChatGPT.";
 
