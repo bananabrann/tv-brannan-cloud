@@ -3,6 +3,7 @@
   "singleQuote": false,
   "trailingComma": "none",
   "bracketSpacing": true,
+  "semi": true,
   "tabWidth": 2,
   "printWidth": 100,
   "plugins": ["prettier-plugin-svelte"],

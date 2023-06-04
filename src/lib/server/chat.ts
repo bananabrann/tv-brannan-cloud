@@ -1,50 +1,69 @@
 import { Configuration, OpenAIApi } from "openai";
-import { OPENAI_API_KEY, OPENAI_ORGANIZATION_ID } from "$env/static/private";
+import { OPENAI_API_KEY, OPENAI_ORGANIZATION_ID, WHITELISTED_USERS } from "$env/static/private";
+import initialPrompt from "./contextPrompt.json";
+import { fail } from "@sveltejs/kit";
+import axios, { AxiosError } from "axios";
+import { getUniqueId } from "$lib/utils";
+import type ChatMessage from "$lib/types/ChatMessage.interface";
 
-export function initializeChatGPT() {
-  console.log("Initializing ChatGPT...");
+export const agentSessionId = getUniqueId();
+console.log(`Starting chat agent ${agentSessionId}...`);
 
-  const configuration = new Configuration({
-    organization: OPENAI_ORGANIZATION_ID,
-    apiKey: OPENAI_API_KEY,
-  });
+const configuration = new Configuration({
+  organization: OPENAI_ORGANIZATION_ID,
+  apiKey: OPENAI_API_KEY
+});
+const openai = new OpenAIApi(configuration);
 
-  const openai = new OpenAIApi(configuration);
+// Array of chat agents. This is so that we can have multiple chat agents
+// at the same time. I do this so that we can have multiple chat agents
+// running at the same time. It shouldn't happen, but it's good to be
+// prepared.
+// let messageStores: Array<MessageStore> = [];
 
-  // Code from the tutorial that used the OpenAI API
-  /*
-  
-    const userInterface = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
+// Send a message to the OpenAI API. Returns the response message.
+export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
+  // Check if user is from a whitelisted IP
+  if (!WHITELISTED_USERS.includes(ip)) {
+    console.log(`User IP "${ip}" attempted to send a message, but is not whitelisted.`);
+
+    return fail(403, {
+      error: "Forbidden",
+      description: "User is not grandma."
     });
+  }
+  try {
+    return await openai
+      .createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [...history, { role: "user", content: message }]
+      })
+      .then((res) => {
+        const responseMessage = res?.data?.choices[0]?.message?.content;
+        // console.log(responseMessage);
+        return {
+          role: "assistant",
+          content: responseMessage
+        } as ChatMessage;
+      });
+  } catch (error: unknown | AxiosError | Error) {
+    const failMessage = "Failed to send message to ChatGPT.";
 
-    userInterface.prompt();
+    // Check if Axios error
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data?.error?.code);
 
-    console.log("Welcome!");
+      return fail(500, {
+        error: error.response?.data?.error?.code ?? error,
+        description: failMessage
+      });
 
-    userInterface.on("line", async (input) => {
-      await openai
-        .createChatCompletion({
-          model: "gpt-3.5-turbo",
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are TVAI, a chatbot that helps my grandma find what TV shows and movies are on what TV streaming service provider. Grandma has access to Hulu, Netflix, Paramount+, and YouTube. If grandma needs tech support, tell grandma to ask for Lee or Cynthia. If you mention a service provider, wrap the word in <b> tags. Do not use complicated, technical language. Do not prompt the user for more responses. Do not ask questions.",
-            },
-            { role: "user", content: input },
-          ],
-        })
-        .then((res) => {
-          console.log(res.data.choices[0].message.content);
-          userInterface.prompt();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    });
-  */
-
-
+      // Just a stock error
+    } else {
+      return fail(500, {
+        error: error instanceof Error ? error.message : "Unknown error.",
+        description: failMessage
+      });
+    }
+  }
 }
