@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 import { OPENAI_API_KEY, OPENAI_ORGANIZATION_ID, WHITELISTED_USERS } from "$env/static/private";
-import initialPrompt from "./contextPrompt.json";
-import { fail } from "@sveltejs/kit";
+import contextPrompt from "./contextPrompt.json";
+import { fail, text } from "@sveltejs/kit";
 import axios, { AxiosError } from "axios";
 import { getUniqueId } from "$lib/utils";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
@@ -36,7 +36,11 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
     return await openai
       .createChatCompletion({
         model: "gpt-3.5-turbo",
-        messages: [...history, { role: "user", content: message }]
+        messages: [
+          { role: "system", content: contextPrompt.text }, // Context prompt.
+          ...history, // Chat history.
+          { role: "user", content: message } // User's message.
+        ]
       })
       .then((res) => {
         const responseMessage = res?.data?.choices[0]?.message?.content;
