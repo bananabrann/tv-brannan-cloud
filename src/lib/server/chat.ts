@@ -51,15 +51,18 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
 
     // Check if Axios error
     if (axios.isAxiosError(error)) {
-      console.error(error.response?.data?.error?.code);
+      const errorCode = error.response?.status ?? 500;
+      console.error(error.response);
 
-      return fail(500, {
-        error: error.response?.data?.error?.code ?? error,
-        description: failMessage
+      return fail(errorCode, {
+        error: errorCode,
+        description: error.response?.statusText ?? failMessage
       });
 
       // Just a stock error
     } else {
+      console.error(error);
+
       return fail(500, {
         error: error instanceof Error ? error.message : "Unknown error.",
         description: failMessage

@@ -1,6 +1,7 @@
 import { WHITELISTED_USERS } from "$env/static/private";
 import { agentSessionId, sendMessage } from "$lib/server/chat";
-import { fail } from "@sveltejs/kit";
+import { isAChatMessage } from "$lib/types/ChatMessage.interface";
+import type { ActionFailure } from "@sveltejs/kit";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
 
 // const SESSION_STORAGE_CHAT_HISTORY_KEY = "chat-history";
@@ -15,7 +16,6 @@ export function load({ getClientAddress, request }) {
 }
 
 export const actions = {
-
   // Send a message to the OpenAI API. Returns the response message.
   send: async ({ cookies, request, getClientAddress }) => {
     const data: FormData = await request.formData();
@@ -26,11 +26,19 @@ export const actions = {
 
     // Message content must be present. There's client-side validation, but this is just
     // in case the user is doing something hacky.
-    if (!prompt) throw new Error("Prompt is undefined");
+    //
+    // This shouldn't throw a new error. Instead, return ActionFailure or error(). (error()
+    // from sveltekit is expected errors.)
+    // if (!prompt) throw new Error("Prompt is undefined");
 
-    try {
-      const response = await sendMessage(prompt, messageHistory, getClientAddress());
+    const response: ChatMessage | ActionFailure<any> = await sendMessage(
+      // @ts-ignore
+      prompt,
+      messageHistory,
+      getClientAddress()
+    );
 
+    if (isAChatMessage(response)) {
       return {
         status: 200,
         success: true,
@@ -39,11 +47,19 @@ export const actions = {
           content: response
         }
       };
-    } catch (error) {
-      return fail(500, {
-        error: error instanceof Error ? error.message : "Unknown error.",
-        description: "An error occurred while making the API call."
-      });
+    } else {
+      console.error(
+        "ActionFailure detected in ask/+page.server.ts. There is probably additional output."
+      );
+
+      return {
+        status: response.status,
+        success: false,
+        message: {
+          role: "system",
+          content: `Error ${response.status}: ${response.data.description}}`
+        }
+      };
     }
   }
 };

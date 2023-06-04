@@ -5,3 +5,13 @@ export default interface ChatMessage {
   role: "user" | "system" | "assistant";
   content: string;
 }
+
+// Type guard for ChatMessage interface.
+export function isAChatMessage(object: any): object is ChatMessage {
+  return (
+    typeof object === "object" &&
+    object !== null &&
+    typeof object.role === "string" &&
+    typeof object.content === "string"
+  );
+}
