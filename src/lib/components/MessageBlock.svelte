@@ -3,13 +3,21 @@
   export let message: ChatMessage;
   import humanPng from "$lib/assets/png/human-female.png";
   import robotPng from "$lib/assets/png/robot.png";
+  import { fly } from "svelte/transition";
 </script>
 
-<div class={`chat-message ${message.role === "user" ? "user-container" : ""} 
+<div
+  class={`chat-message ${message.role === "user" ? "user-container" : ""} 
 ${message.role === "assistant" ? "robot-container" : ""}
-${message.role === "system" ? "system-container" : ""}`}>
+${message.role === "system" ? "system-container" : ""}`}
+  in:fly={{ y: 50, duration: 500 }}
+>
   {#if message.role === "user" || message.role === "assistant"}
-    <img class="avatar" src={message.role === "user" ? humanPng : robotPng} alt={`${message.role} picture`} />
+    <img
+      class="avatar"
+      src={message.role === "user" ? humanPng : robotPng}
+      alt={`${message.role} picture`}
+    />
   {/if}
   {#if message.role === "system"}
     <!-- <img src={system} alt=""> -->
@@ -32,6 +40,7 @@ ${message.role === "system" ? "system-container" : ""}`}>
   $human-color: $light-color;
 
   .chat-message {
+    z-index: 1;
     display: flex;
     justify-content: flex-start;
 
@@ -42,7 +51,7 @@ ${message.role === "system" ? "system-container" : ""}`}>
   }
 
   .user-container {
-    flex-direction: row-reverse
+    flex-direction: row-reverse;
   }
 
   .message-content {
@@ -58,6 +67,7 @@ ${message.role === "system" ? "system-container" : ""}`}>
   .user-message {
     border-top-right-radius: 0;
     border: $human-color solid 2px;
+    white-space: pre;
   }
 
   .robot-message {

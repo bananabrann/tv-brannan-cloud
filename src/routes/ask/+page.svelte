@@ -6,8 +6,12 @@
   import { enhance } from "$app/forms";
   import { getUniqueId } from "$lib/utils.js";
   import MessageBlock from "$lib/components/MessageBlock.svelte";
+  import { fly } from "svelte/transition";
+  import { afterUpdate } from "svelte";
 
   export let data;
+
+  let element: HTMLElement;
 
   let messages: ChatMessage[] = [];
   let inputTextMessage: string = "";
@@ -18,6 +22,21 @@
     messages = [...messages, message];
     console.log(messages);
   }
+
+  const scrollToBottom = async (node: HTMLElement) => {
+    node.scroll({ top: node.scrollHeight, behavior: "smooth" });
+  };
+
+  afterUpdate(() => {
+    if (messages.length > 0) {
+      const chatbox = document.getElementById("chatbox");
+      if (messages.length > 0) scrollToBottom(chatbox as HTMLElement);
+    }
+  });
+
+  $: if (messages.length > 1 && element) {
+    scrollToBottom(element);
+  }
 </script>
 
 <h2>Find a show or ask a question</h2>
@@ -26,12 +45,31 @@
 
 <hr />
 
-<section id="chatbox">
+<section id="chatbox" bind:this={element}>
+  <MessageBlock
+    message={{
+      role: "assistant",
+      content: `Hi 😀, I'm your chatbot. I can help you find where a TV show or movie is, or try to answer any questions you may have. Simply type the name of the show you're looking for, or ask your question. I'm able to hold a conversation! `
+    }}
+  />
+  <MessageBlock
+    message={{
+      role: "assistant",
+      content: `Keep in mind, I may be wrong and do not know information after September, 2021.`
+    }}
+  />
+
   {#each messages as message}
     <!-- <p>{message.content}</p> -->
     <MessageBlock {message} />
   {/each}
 
+  {#if isCreating}
+    <p id="robot-is-typing"><code>The robot is typing...</code></p>
+  {/if}
+</section>
+
+<section id="bottom-area">
   <form
     action="?/send"
     method="POST"
@@ -83,20 +121,46 @@
 
 <style lang="scss">
   #chatbox {
-    form {
-      // display: flex;
-      // flex-direction: column;
-      // align-items: center;
-      // justify-content: center;
+    z-index: 1;
+    margin: 0 auto;
+    max-width: 1080px;
+    max-height: 70vh;
+    overflow-y: scroll;
+    margin-bottom: 30px;
 
-      textarea {
+    form {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+
+      max-width: 850px;
+      margin: 0 0 0 auto;
+
+      input {
         width: 90%;
         max-width: 600px;
+      }
+
+      button {
+        min-width: 160px;
       }
     }
   }
 
   #message-history {
     display: none;
+  }
+
+  #robot-is-typing {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  #bottom-area {
+    position: relative;
+    -webkit-box-shadow: 0px -5px 16px 0px $dark-color;
+    -moz-box-shadow: 0px -5px 16px 0px $dark-color;
+    box-shadow: 0px -22px 20px 10px $dark-color;
   }
 </style>
