@@ -38,15 +38,22 @@ ${message.role === "system" ? "system-container" : ""}`}
 <style lang="scss">
   $robot-color: #935299;
   $human-color: $light-color;
+  $breakpoint: 500px;
 
   .chat-message {
     z-index: 1;
     display: flex;
     justify-content: flex-start;
+    margin-right: 4px;
 
     .avatar {
       max-height: 90px;
       margin: 0 10px;
+      @media screen and (max-width: $breakpoint) {
+        width: 50px;
+        height: 50px;
+        margin: 0;
+      }
     }
   }
 
@@ -61,7 +68,18 @@ ${message.role === "system" ? "system-container" : ""}`}
     margin: 0 15px 2rem;
     border-radius: 2rem;
     width: 80%;
-    // border-top-right-radius: 0;
+
+    p {
+      @media screen and (max-width: $breakpoint) {
+        font-size: 0.9rem;
+        padding: 0;
+        margin: 0;
+      }
+    }
+    @media screen and (max-width: $breakpoint) {
+      padding: 0.75rem;
+      border-radius: 1rem;
+    }
   }
 
   .user-message {

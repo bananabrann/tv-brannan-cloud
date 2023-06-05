@@ -1,12 +1,7 @@
 <script lang="ts">
-  import Chatbox from "$lib/components/Chatbox.svelte";
-  // import type { MessageBlock as Message } from "$lib/types/MessageBlock";
   import type ChatMessage from "$lib/types/ChatMessage.interface";
-  // import type ChatMessage from "$lib/types/ChatMessage.interface.js";
   import { enhance } from "$app/forms";
-  import { getUniqueId } from "$lib/utils.js";
   import MessageBlock from "$lib/components/MessageBlock.svelte";
-  import { fly } from "svelte/transition";
   import { afterUpdate } from "svelte";
 
   export let data;
@@ -40,8 +35,6 @@
 </script>
 
 <h2>Find a show or ask a question</h2>
-
-<p><b>Type the name</b> of a show or movie to see what service, or simply ask any question!</p>
 
 <hr />
 
@@ -117,33 +110,46 @@
 
 <!-- <Chatbox bind:inputTextMessage bind:messages {sendMessage} /> -->
 
+<br />
+
 <small>Chatting with agent <code>{data.agentSessionId}</code></small>
 
 <style lang="scss">
+  $breakpoint: 500px;
+
   #chatbox {
     z-index: 1;
     margin: 0 auto;
     max-width: 1080px;
-    max-height: 70vh;
+    height: 60vh;
     overflow-y: scroll;
-    margin-bottom: 30px;
+    @include nice-scroll();
+  }
 
-    form {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+  form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 850px;
+    margin: 0 auto;
+
+    @media screen and (max-width: $breakpoint) {
+      flex-direction: column;
       justify-content: flex-end;
+    }
 
-      max-width: 850px;
-      margin: 0 0 0 auto;
+    input {
+      width: 90%;
+      max-width: 600px;
+    }
 
-      input {
-        width: 90%;
-        max-width: 600px;
-      }
+    button {
+      min-width: 160px;
+      margin: 0 10px;
 
-      button {
-        min-width: 160px;
+      @media screen and (max-width: $breakpoint) {
+        font-size: 0.9rem;
       }
     }
   }
@@ -161,6 +167,6 @@
     position: relative;
     -webkit-box-shadow: 0px -5px 16px 0px $dark-color;
     -moz-box-shadow: 0px -5px 16px 0px $dark-color;
-    box-shadow: 0px -22px 20px 10px $dark-color;
+    box-shadow: 0px -22px 20px 0px $dark-color;
   }
 </style>

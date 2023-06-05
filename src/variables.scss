@@ -34,3 +34,22 @@ $monospace-font-family: "Ubuntu Mono", monospace;
   -moz-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.53);
   box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.53);
 }
+
+@mixin nice-scroll() {
+  &::-webkit-scrollbar {
+    // display: none;
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: adjust-color($dark-color, $lightness: 20%);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.192);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: adjust-color($light-color, $lightness: 50%);
+    width: 10px;
+  }
+}
