@@ -12,7 +12,7 @@ $dark-color: #22272b;
 $primary-font-family: "Geologica", sans-serif;
 $monospace-font-family: "Ubuntu Mono", monospace;
 
-// Mixin that applies a gentle transition to the given property
+// Mixin that applies a gentle transition to the given property.
 @mixin gentle-transition($property: all, $duration: 0.15s, $timing-function: ease-in-out) {
   -webkit-transition: $property $duration $timing-function;
   -moz-transition: $property $duration $timing-function;
@@ -21,18 +21,18 @@ $monospace-font-family: "Ubuntu Mono", monospace;
   transition: $property $duration $timing-function;
 }
 
-// Base underline properties
+// Base underline properties.
 @mixin underline($color: $brand-primary-color, $thickness: 2px, $offset: 3px) {
   text-decoration: solid underline $color;
   text-decoration-thickness: $thickness;
   text-underline-offset: $offset;
 }
 
-// Base box-shadow properties
+// Base box-shadow properties.
 @mixin box-shadow() {
-  -webkit-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.53);
-  -moz-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.53);
-  box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.53);
+  -webkit-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.53);
+  -moz-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.53);
+  box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.53);
 }
 
 @mixin nice-scroll() {
@@ -51,5 +51,69 @@ $monospace-font-family: "Ubuntu Mono", monospace;
   &::-webkit-scrollbar-thumb:hover {
     background: adjust-color($light-color, $lightness: 50%);
     width: 10px;
+  }
+}
+
+// Adds several effects to make the element look magical.
+@mixin make-magical() {
+  @include gentle-transition();
+  background: radial-gradient(circle, #ff00ff, #00ffff);
+  color: white;
+  padding: 1em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 2rem;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: particle 2s linear infinite;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: particle 3s linear infinite;
+  }
+
+  &:hover:before,
+  &:hover:after {
+    transform: scale(1.5);
+  }
+
+  &:hover {
+    @include gentle-transition();
+    cursor: pointer;
+    background-size: 200%;
+    transition: background-size 0.5s ease;
+    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.3);
+  }
+
+  @keyframes particle {
+    0% {
+      opacity: 0;
+      transform: translateX(-200px) translateY(-200px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(200px) translateY(200px);
+    }
   }
 }

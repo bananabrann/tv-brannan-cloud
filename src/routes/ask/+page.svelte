@@ -1,21 +1,27 @@
 <script lang="ts">
   import type ChatMessage from "$lib/types/ChatMessage.interface";
+  import type MagicButtonProps from "$lib/types/MagicButtonProps.interface.js";
+  import { isValidMagicButtonServiceProvider } from "$lib/types/MagicButtonProps.interface.js";
   import { enhance } from "$app/forms";
   import MessageBlock from "$lib/components/MessageBlock.svelte";
   import { afterUpdate } from "svelte";
+  import MagicButton from "$lib/components/MagicButton.svelte";
 
   export let data;
 
   let element: HTMLElement;
-
   let messages: ChatMessage[] = [];
   let inputTextMessage: string = "";
-
   let isCreating = false;
+  let isShowingMagicButton = false;
+  let MagicButtonProps: MagicButtonProps;
+
+  $: if (messages.length > 1 && element) {
+    scrollToBottom(element);
+  }
 
   function addMessageToArray(message: ChatMessage) {
     messages = [...messages, message];
-    console.log(messages);
   }
 
   const scrollToBottom = async (node: HTMLElement) => {
@@ -29,8 +35,36 @@
     }
   });
 
-  $: if (messages.length > 1 && element) {
-    scrollToBottom(element);
+  function determineMagicButton(message: ChatMessage) {
+    if (message.content.includes("SERVICE<")) {
+      const service = message.content.split("<")[1].split(">")[0];
+      const showName = message.content.split("<")[2].split(">")[0];
+
+      if (isValidMagicButtonServiceProvider(service.toLowerCase())) {
+        isShowingMagicButton = true;
+        MagicButtonProps = {
+          provider: service.toLowerCase() as MagicButtonProps["provider"],
+          showName: showName.toLowerCase() as MagicButtonProps["showName"]
+        };
+      }
+
+      // Remove SERVICE<...> and SHOWNAME<...> from message
+      const newMessage = message.content
+        .replace(`SERVICE<${service}>`, "")
+        .replace(`SHOWNAME<${showName}>`, "");
+
+      // Replace message in messages array.
+      messages = messages.map((m) => {
+        if (m.content === message.content) {
+          return {
+            ...m,
+            content: newMessage
+          };
+        } else {
+          return m;
+        }
+      });
+    }
   }
 </script>
 
@@ -63,12 +97,19 @@
 </section>
 
 <section id="bottom-area">
+  {#if isShowingMagicButton}
+    <MagicButton {MagicButtonProps} />
+  {/if}
+
+  <br />
+
   <form
     action="?/send"
     method="POST"
     class=""
     use:enhance={() => {
       isCreating = true;
+      isShowingMagicButton = false;
       addMessageToArray({
         role: "user",
         content: inputTextMessage
@@ -76,15 +117,14 @@
 
       return async ({ update, result }) => {
         await update();
+
+        // @ts-expect-error
+        const message = result.data?.message.content;
+
         isCreating = false;
 
-        // TODO - Make type safe
-        addMessageToArray({
-          // @ts-ignore
-          role: result.data.message.content.role,
-          // @ts-ignore
-          content: result.data.message.content.content
-        });
+        addMessageToArray(message);
+        determineMagicButton(message);
       };
     }}
   >
@@ -106,13 +146,11 @@
 
     <button id="chat-submit-button" type="submit" disabled={isCreating}>Send message</button>
   </form>
+
+  <small>Chatting with agent <code>{data.agentSessionId}</code></small>
 </section>
 
-<!-- <Chatbox bind:inputTextMessage bind:messages {sendMessage} /> -->
-
 <br />
-
-<small>Chatting with agent <code>{data.agentSessionId}</code></small>
 
 <style lang="scss">
   $breakpoint: 500px;
@@ -133,6 +171,7 @@
     justify-content: center;
     max-width: 850px;
     margin: 0 auto;
+    width: 80%;
 
     @media screen and (max-width: $breakpoint) {
       flex-direction: column;
@@ -168,5 +207,18 @@
     -webkit-box-shadow: 0px -5px 16px 0px $dark-color;
     -moz-box-shadow: 0px -5px 16px 0px $dark-color;
     box-shadow: 0px -22px 20px 0px $dark-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    small {
+      display: block;
+      width: 100%;
+      text-align: right;
+      margin-top: 1rem;
+      @media screen and (max-width: $breakpoint) {
+        text-align: center;
+      }
+    }
   }
 </style>

@@ -1,5 +1,5 @@
 <script>
-  import StreamingService from "../StreamingService.svelte";
+  import StreamingService from "../lib/components/StreamingService.svelte";
 </script>
 
 <br />
