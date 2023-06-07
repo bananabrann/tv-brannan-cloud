@@ -1,15 +1,31 @@
-# tv.brannan.cloud
+# Grandma's TV
 
-This project is a simple website to make navigating to various streaming services simple and easy. This site is loaded directly onto a microprocessor, and is opened automatically when they turn their TV on.
+A simple project to make navigating to various streaming services simple and easy for my grandma. This site is loaded directly onto a microprocessor behind their TV (it's secretly just a website, don't tell her) and is opened automatically when they turn their TV on.
 
-# Setting up your dev environment
+As of 1.1.0, tv.brannan.cloud now has a ChatGPT-powered chat bot that enables grandma to type the name of a show, and if it's a valid show on Netflix or Youtube, have the option to instantly navigate to the show on the website.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). After cloning and installing dependencies, simply call `npm start` or `npm run dev`.
+## Deploying this app
 
-## How to deploy
+> Readme section WIP
 
-The project uses DigitalOcean for its hosting, and is configured to **automatically deploy from the main branch.**
+## SvelteKit development commands
 
-## Learn more
+##### Build script
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started) or repo [Create React App](https://github.com/facebook/create-react-app). All the base scripts are available.
+`npm run build`
+
+##### Preview production build
+
+`npm run preview`
+
+##### Start development build
+
+`npm run dev`, or if you're cool, `npm run dev -- --open`
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Common errors
+### SOME_SECRET_HERE" is not exported by "$env/static/private", imported by "src/lib/server/{file}"
+> Solution WIP
