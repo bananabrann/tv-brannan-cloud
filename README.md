@@ -25,3 +25,7 @@ As of 1.1.0, tv.brannan.cloud now has a ChatGPT-powered chat bot that enables gr
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Common errors
+### SOME_SECRET_HERE" is not exported by "$env/static/private", imported by "src/lib/server/{file}"
+> Solution WIP
