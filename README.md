@@ -1,37 +1,26 @@
-# create-svelte
+# Grandma's TV
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A simple project to make navigating to various streaming services simple and easy for my grandma. This site is loaded directly onto a microprocessor behind their TV (it's secretly just a website, don't tell her) and is opened automatically when they turn their TV on.
 
-## Creating a project
+As of 1.1.0, tv.brannan.cloud now has a ChatGPT-powered chat bot that enables grandma to type the name of a show, and if it's a valid show on Netflix or Youtube, have the option to instantly navigate to the show on the website.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Deploying this app
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+> Readme section WIP
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## SvelteKit development commands
 
-## Developing
+##### Build script
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+`npm run build`
 
-```bash
-npm run dev
+##### Preview production build
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+`npm run preview`
 
-## Building
+##### Start development build
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
+`npm run dev`, or if you're cool, `npm run dev -- --open`
 
 You can preview the production build with `npm run preview`.
 
