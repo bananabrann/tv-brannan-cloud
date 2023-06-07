@@ -2,9 +2,6 @@
   import "../app.scss";
   import Github from "svelte-material-icons/Github.svelte";
   import { version } from "$app/environment"
-
-  export const semanticVersion = "1.1.0"
-
 </script>
 
 <div class="line" />
@@ -24,7 +21,7 @@
           <Github size="1.75rem" />
         </a>
       </span>
-      <span>{semanticVersion}.<small>{version}</small></span>
+      <span>{version}</span>
     </div>
     <!-- <a href={`https://github.com/bananabrann/tv.brannan.cloud/releases/tag/v&#x24;{version}`}>{version}</a -->
   </nav>
