@@ -26,13 +26,18 @@ export const actions = {
 
     // Message content must be present. There's client-side validation, but this is just
     // in case the user is doing something hacky.
-    //
-    // This shouldn't throw a new error. Instead, return ActionFailure or error(). (error()
-    // from sveltekit is expected errors.)
-    // if (!prompt) throw new Error("Prompt is undefined");
+    if (!prompt) {
+      return {
+        status: 400,
+        success: false,
+        message: {
+          role: "system",
+          content: "Error 400: Bad Request"
+        }
+      };
+    }
 
     const response: ChatMessage | ActionFailure<any> = await sendMessage(
-      // @ts-ignore
       prompt,
       messageHistory,
       getClientAddress()
@@ -53,11 +58,11 @@ export const actions = {
       );
 
       return {
-        status: response.status,
+        status: 500,
         success: false,
         message: {
           role: "system",
-          content: `Error ${response.status}: ${response.data.description}}`
+          content: `Error 500: Something went wrong`
         }
       };
     }

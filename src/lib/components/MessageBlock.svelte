@@ -31,7 +31,9 @@ ${message.role === "system" ? "system-container" : ""}`}
   `}
   >
     <p>{message.content}</p>
-    <small>From {message.role === "user" ? "you" : "the robot"}</small>
+    {#if message.role !== "system"}
+      <small>From {message.role === "user" ? "you" : "the robot"}</small>
+    {/if}
   </div>
 </div>
 
@@ -94,6 +96,10 @@ ${message.role === "system" ? "system-container" : ""}`}
   }
 
   .system-message {
+    box-shadow: none;
     border-radius: 0;
+    color: $danger-color;
+    background-color: adjust-color($dark-color, $lightness: 0%);
+    text-align: center;
   }
 </style>

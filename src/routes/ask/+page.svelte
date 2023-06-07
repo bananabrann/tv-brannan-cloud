@@ -36,7 +36,7 @@
   });
 
   function determineMagicButton(message: ChatMessage) {
-    if (message.content.includes("SERVICE<")) {
+    if (message?.content?.includes("SERVICE<")) {
       const service = message.content.split("<")[1].split(">")[0];
       const showName = message.content.split("<")[2].split(">")[0];
 
@@ -87,7 +87,6 @@
   />
 
   {#each messages as message}
-    <!-- <p>{message.content}</p> -->
     <MessageBlock {message} />
   {/each}
 
@@ -116,15 +115,19 @@
       });
 
       return async ({ update, result }) => {
-        await update();
-
-        // @ts-expect-error
-        const message = result.data?.message.content;
+        // if(result.status !== 200) { console.error"("Failed") }
 
         isCreating = false;
 
-        addMessageToArray(message);
-        determineMagicButton(message);
+        await update();
+
+        // @ts-expect-error
+        let message = result.status === 200 ? result.data?.message.content : null;
+
+        if (message) {
+          addMessageToArray(message);
+          determineMagicButton(message);
+        }
       };
     }}
   >
