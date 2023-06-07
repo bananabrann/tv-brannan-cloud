@@ -32,7 +32,7 @@
   <li>List item 3</li>
 </ul>
 
-<a href="#">A link here.</a>
+<a href="/styles-testing">A link here.</a>
 
 <br />
 
@@ -45,20 +45,19 @@
 <form action="">
   <input type="text" value="Some value text" />
   <input type="text" value="Disabled input" disabled />
-  <br>
-  <textarea name="" id="" cols="30" rows="10"></textarea>
+  <br />
+  <textarea name="" id="" cols="30" rows="10" />
 </form>
 
-<hr>
+<hr />
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 <!-- TODO: Form elements -->

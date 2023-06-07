@@ -1,47 +1,54 @@
-# name: CI
+name: CI
 
-# on: [push, pull_request]
+# Trigger github action on pushes and pull requests to the main branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - feature/*
 
-# jobs:
-#   checks:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-#     - name: Set up Node.js
-#       uses: actions/setup-node@v2
-#       with:
-#         node-version: 18
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
 
-#     - name: Install dependencies
-#       run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-#     - name: Check code formatting
-#       run: npx prettier --check ./
-#       continue-on-error: true
+      - name: Check code formatting
+        run: npx prettier --check ./
+        continue-on-error: true
 
-#     - name: Inform about code formatting issues
-#       if: ${{ failure() }}
-#       run: "echo 'Warning: Code formatting issues detected. Please fix them before merging the PR.'"
+      - name: Inform about code formatting issues
+        if: ${{ failure() }}
+        run: "echo 'Warning: Code formatting issues detected. Please fix them before merging the PR.'"
 
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-#     - name: Set up Node.js
-#       uses: actions/setup-node@v2
-#       with:
-#         node-version: 18
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
 
-#     - name: Install dependencies
-#       run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-#     - name: Build
-#       run: npm run build
-
+      - name: Build
+        run: npm run build
 #     - name: Upload artifacts
 #       uses: actions/upload-artifact@v2
 #       with:
@@ -49,26 +56,3 @@
 #         path: build/
 #         retention-days: 7
 
-#   test:
-#     runs-on: ubuntu-latest
-#     needs: build
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-
-#     - name: Set up Node.js
-#       uses: actions/setup-node@v2
-#       with:
-#         node-version: 18
-
-#     - name: Install dependencies
-#       run: npm ci
-
-#     - name: Download build artifacts
-#       uses: actions/download-artifact@v2
-#       with:
-#         name: build
-#         path: build/
-
-#     - name: Run tests
-#       run: npm run test

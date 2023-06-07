@@ -28,14 +28,14 @@
 </script>
 
 <button
-in:fly={{ y: 200, duration: 2000 }}
+  in:fly={{ y: 200, duration: 2000 }}
   class="magical-button"
   on:click={() => {
     console.log(redirectUrl);
     performRedirect();
   }}
 >
-✨ Take me there! 🦄
+  ✨ Take me there! 🦄
 </button>
 
 <style lang="scss">
