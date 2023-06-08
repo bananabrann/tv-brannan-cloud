@@ -48,13 +48,19 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 18
+      - name: "Create .env file"
+          run: |
+            touch .env
+            echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+            echo "OPENAI_ORGANIZATION_ID=${{ secrets.OPENAI_ORGANIZATION_ID }}" >> .env
+            echo "WHITELISTED_USERS"="" >> .env
 
       - name: Install dependencies
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_ORG_ID: ${{ secrets.OPENAI_ORGANIZATION_ID }}
-
         run: npm ci
+        # env:
+        #   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        #   OPENAI_ORG_ID: ${{ secrets.OPENAI_ORGANIZATION_ID }}
+
 
       - name: Build
         run: npm run build
