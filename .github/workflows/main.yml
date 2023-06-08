@@ -38,7 +38,7 @@ jobs:
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_ORG_ID: ${{ secrets.OPENAI_ORGANIZATION_ID }}
-      
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -50,6 +50,10 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_ORG_ID: ${{ secrets.OPENAI_ORGANIZATION_ID }}
+
         run: npm ci
 
       - name: Build
