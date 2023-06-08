@@ -1,7 +1,7 @@
 <script>
   import "../app.scss";
   import Github from "svelte-material-icons/Github.svelte";
-  import { version } from "$app/environment"
+  import { version } from "$app/environment";
 </script>
 
 <div class="line" />
