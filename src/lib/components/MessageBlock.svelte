@@ -67,7 +67,7 @@ ${message.role === "system" ? "system-container" : ""}`}
     @include box-shadow();
     background-color: adjust-color($color: $dark-color, $lightness: 5%);
     padding: 1rem;
-    margin: 0 15px 2rem;
+    margin: 0 15px;
     border-radius: 2rem;
     width: 80%;
 
@@ -101,5 +101,9 @@ ${message.role === "system" ? "system-container" : ""}`}
     color: $danger-color;
     background-color: adjust-color($dark-color, $lightness: 0%);
     text-align: center;
+    padding: 0;
+    p {
+      margin: 0;
+    }
   }
 </style>

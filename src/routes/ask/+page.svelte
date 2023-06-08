@@ -165,6 +165,15 @@
     overflow-y: scroll;
     padding-bottom: $bottom-area-height;
     @include nice-scroll();
+    display: flex;
+    flex-direction: column;
+    align-items: normal; // explicit default
+    gap: 2rem;
+
+    // media query for less than breakpoint
+    @media screen and (max-width: $breakpoint) {
+      gap: 0.5rem;
+    }
   }
 
   form {
