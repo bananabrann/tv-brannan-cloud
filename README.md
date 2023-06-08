@@ -27,5 +27,20 @@ You can preview the production build with `npm run preview`.
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
 ## Common errors
+
 ### SOME_SECRET_HERE" is not exported by "$env/static/private", imported by "src/lib/server/{file}"
-> Solution WIP
+
+The environment variables are not set.
+
+In GitHub Actions (or other pipeline providers), `env` of the YAML does not pass it to the app. The server needs the .env file to be created.
+
+```yaml
+jobs:
+    build:
+        - name: "Create .env file"
+            run: |
+                touch .env
+                echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+                echo "OPENAI_ORGANIZATION_ID=${{ secrets.OPENAI_ORGANIZATION_ID }}" >> .env
+                echo "WHITELISTED_USERS"="" >> .env
+```
