@@ -1,10 +1,11 @@
 import { Configuration, OpenAIApi } from "openai";
 import { OPENAI_API_KEY, OPENAI_ORGANIZATION_ID, WHITELISTED_USERS } from "$env/static/private";
 import contextPrompt from "./contextPrompt.json";
-import { fail, text } from "@sveltejs/kit";
-import axios, { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 import { getUniqueId } from "$lib/utils";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
+import { error } from '@sveltejs/kit';
+
 
 export const agentSessionId = getUniqueId();
 console.log(`Starting chat agent ${agentSessionId}...`);
@@ -24,14 +25,15 @@ const openai = new OpenAIApi(configuration);
 // Send a message to the OpenAI API. Returns the response message.
 export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
   // Check if user is from a whitelisted IP
-  if (!WHITELISTED_USERS.includes(ip)) {
+  if (WHITELISTED_USERS.split(' ').filter((x) => x === ip).length < 1 ) {
     console.log(`User IP "${ip}" attempted to send a message, but is not whitelisted.`);
 
-    return fail(403, {
-      error: "Forbidden",
-      description: "User is not grandma."
-    });
+    return {
+      role: "system",
+      content: "Error 403: User is not grandma"
+    }  as ChatMessage
   }
+
   try {
     return await openai
       .createChatCompletion({
@@ -50,27 +52,7 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
           content: responseMessage
         } as ChatMessage;
       });
-  } catch (error: unknown | AxiosError | Error) {
-    const failMessage = "Failed to send message to ChatGPT.";
-
-    // Check if Axios error
-    if (axios.isAxiosError(error)) {
-      const errorCode = error.response?.status ?? 500;
-      console.error(error.response);
-
-      return fail(errorCode, {
-        error: errorCode,
-        description: error.response?.statusText ?? failMessage
-      });
-
-      // Just a stock error
-    } else {
-      console.error(error);
-
-      return fail(500, {
-        error: error instanceof Error ? error.message : "Unknown error.",
-        description: failMessage
-      });
-    }
+  } catch (err: unknown | AxiosError | Error) {
+    throw error(500, {message: "Unknown error while sending to ChatGPT."});
   }
 }
