@@ -34,6 +34,11 @@ jobs:
         run: "echo 'Warning: Code formatting issues detected. Please fix them before merging the PR.'"
 
   build:
+    needs: checks
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_ORG_ID: ${{ secrets.OPENAI_ORGANIZATION_ID }}
+      
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
