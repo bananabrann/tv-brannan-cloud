@@ -94,12 +94,10 @@
 </section>
 
 <section id="bottom-area">
+  <br />
   {#if isShowingMagicButton}
     <MagicButton {MagicButtonProps} />
   {/if}
-
-  <br />
-
   <form
     action="?/send"
     method="POST"
@@ -116,7 +114,7 @@
         // if(result.status !== 200) { console.error"("Failed") }
 
         isCreating = false;
-        
+
         await update();
 
         // @ts-expect-error
@@ -161,7 +159,7 @@
     z-index: 1;
     margin: 0 auto;
     max-width: 1080px;
-    height: calc(75vh - $bottom-area-height);
+    height: calc(75vh);
     overflow-y: scroll;
     padding-bottom: $bottom-area-height;
     @include nice-scroll();

@@ -59,15 +59,19 @@ $monospace-font-family: "Ubuntu Mono", monospace;
   @include gentle-transition();
   background: radial-gradient(circle, #ff00ff, #00ffff);
   color: white;
-  padding: 1em;
+  padding: 1.25em;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
   overflow: hidden;
   border: none;
   font-weight: bold;
-  font-size: 1.2rem;
-  border-radius: 2rem;
+  font-size: 1rem;
+  margin: 0.25rem 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:before {
     content: "";
