@@ -68,9 +68,7 @@
   }
 </script>
 
-<h2>Find a show or ask a question</h2>
-
-<hr />
+<br />
 
 <section id="chatbox" bind:this={element}>
   <MessageBlock
@@ -118,7 +116,7 @@
         // if(result.status !== 200) { console.error"("Failed") }
 
         isCreating = false;
-
+        
         await update();
 
         // @ts-expect-error
@@ -139,7 +137,7 @@
       disabled={isCreating}
       required
       bind:value={inputTextMessage}
-      on:change={(event) => {}}
+      autofocus
     />
 
     <!-- Message history to provide memory to ChatGPT. This is invisible to the user. -->
@@ -157,13 +155,15 @@
 
 <style lang="scss">
   $breakpoint: 500px;
+  $bottom-area-height: 150px;
 
   #chatbox {
     z-index: 1;
     margin: 0 auto;
     max-width: 1080px;
-    height: 60vh;
+    height: calc(75vh - $bottom-area-height);
     overflow-y: scroll;
+    padding-bottom: $bottom-area-height;
     @include nice-scroll();
   }
 
@@ -182,7 +182,7 @@
     }
 
     input {
-      width: 90%;
+      width: 80%;
       max-width: 600px;
     }
 
@@ -206,7 +206,15 @@
   }
 
   #bottom-area {
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    height: $bottom-area-height;
+    background-color: $dark-color;
+
     -webkit-box-shadow: 0px -5px 16px 0px $dark-color;
     -moz-box-shadow: 0px -5px 16px 0px $dark-color;
     box-shadow: 0px -22px 20px 0px $dark-color;
