@@ -16,12 +16,6 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-// Array of chat agents. This is so that we can have multiple chat agents
-// at the same time. I do this so that we can have multiple chat agents
-// running at the same time. It shouldn't happen, but it's good to be
-// prepared.
-// let messageStores: Array<MessageStore> = [];
-
 // Send a message to the OpenAI API. Returns the response message.
 export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
   // Check if user is from a whitelisted IP

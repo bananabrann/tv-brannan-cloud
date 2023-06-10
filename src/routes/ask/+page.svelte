@@ -68,103 +68,112 @@
   }
 </script>
 
-<h2>Find a show or ask a question</h2>
+<br />
 
-<hr />
-
-<section id="chatbox" bind:this={element}>
-  <MessageBlock
-    message={{
-      role: "assistant",
-      content: `Hi 😀, I'm your chatbot. I can help you find where a TV show or movie is, or try to answer any questions you may have. Simply type the name of the show you're looking for, or ask your question. I'm able to hold a conversation! `
-    }}
-  />
-  <MessageBlock
-    message={{
-      role: "assistant",
-      content: `Keep in mind, I may be wrong and do not know information after September, 2021.`
-    }}
-  />
-
-  {#each messages as message}
-    <MessageBlock {message} />
-  {/each}
-
-  {#if isCreating}
-    <p id="robot-is-typing"><code>The robot is typing...</code></p>
-  {/if}
-</section>
-
-<section id="bottom-area">
-  {#if isShowingMagicButton}
-    <MagicButton {MagicButtonProps} />
-  {/if}
-
-  <br />
-
-  <form
-    action="?/send"
-    method="POST"
-    class=""
-    use:enhance={() => {
-      isCreating = true;
-      isShowingMagicButton = false;
-      addMessageToArray({
-        role: "user",
-        content: inputTextMessage
-      });
-
-      return async ({ update, result }) => {
-        // if(result.status !== 200) { console.error"("Failed") }
-
-        isCreating = false;
-
-        await update();
-
-        // @ts-expect-error
-        let message = result.status === 200 ? result.data?.message.content : null;
-
-        if (message) {
-          addMessageToArray(message);
-          determineMagicButton(message);
-        }
-      };
-    }}
-  >
-    <input
-      type="text"
-      autocomplete="off"
-      id="question"
-      name="question-content"
-      disabled={isCreating}
-      required
-      bind:value={inputTextMessage}
-      on:change={(event) => {}}
+<content>
+  <section id="chatbox" bind:this={element}>
+    <MessageBlock
+      message={{
+        role: "assistant",
+        content: `Hi 😀, I'm your chatbot. I can help you find where a TV show or movie is, or try to answer any questions you may have. Simply type the name of the show you're looking for, or ask your question. I'm able to hold a conversation! `
+      }}
+    />
+    <MessageBlock
+      message={{
+        role: "assistant",
+        content: `Keep in mind, I may be wrong and do not know information after September, 2021.`
+      }}
     />
 
-    <!-- Message history to provide memory to ChatGPT. This is invisible to the user. -->
-    <textarea name="message-history" id="message-history" cols="30" rows="10">
-      {JSON.stringify(messages)}
-    </textarea>
+    {#each messages as message}
+      <MessageBlock {message} />
+    {/each}
 
-    <button id="chat-submit-button" type="submit" disabled={isCreating}>Send message</button>
-  </form>
+    {#if isCreating}
+      <p id="robot-is-typing"><code>The robot is typing...</code></p>
+    {/if}
+  </section>
 
-  <small>Chatting with agent <code>{data.agentSessionId}</code></small>
-</section>
+  <section id="bottom-area">
+    <br />
+    {#if isShowingMagicButton}
+      <MagicButton {MagicButtonProps} />
+    {/if}
+    <form
+      action="?/send"
+      method="POST"
+      class=""
+      use:enhance={() => {
+        isCreating = true;
+        isShowingMagicButton = false;
+        addMessageToArray({
+          role: "user",
+          content: inputTextMessage
+        });
+
+        return async ({ update, result }) => {
+          // if(result.status !== 200) { console.error"("Failed") }
+
+          isCreating = false;
+
+          await update();
+
+          // @ts-expect-error
+          let message = result.status === 200 ? result.data?.message.content : null;
+
+          if (message) {
+            addMessageToArray(message);
+            determineMagicButton(message);
+          }
+        };
+      }}
+    >
+      <input
+        type="text"
+        autocomplete="off"
+        id="question"
+        name="question-content"
+        disabled={isCreating}
+        required
+        bind:value={inputTextMessage}
+        autofocus
+      />
+
+      <!-- Message history to provide memory to ChatGPT. This is invisible to the user. -->
+      <textarea name="message-history" id="message-history" cols="30" rows="10">
+        {JSON.stringify(messages)}
+      </textarea>
+
+      <button id="chat-submit-button" type="submit" disabled={isCreating}>Send message</button>
+    </form>
+
+    <!-- <small>Chatting with agent <code>{data.agentSessionId}</code></small> -->
+  </section>
+</content>
 
 <br />
 
 <style lang="scss">
   $breakpoint: 500px;
+  $bottom-area-height: 150px;
 
   #chatbox {
+    @include nice-scroll();
     z-index: 1;
     margin: 0 auto;
     max-width: 1080px;
     height: 60vh;
     overflow-y: scroll;
-    @include nice-scroll();
+    padding-bottom: $bottom-area-height;
+    display: flex;
+    flex-direction: column;
+    align-items: normal; // explicit default
+    gap: 2rem;
+
+    // media query for less than breakpoint
+    @media screen and (max-width: $breakpoint) {
+      gap: 0.5rem;
+    }
   }
 
   form {
@@ -182,7 +191,7 @@
     }
 
     input {
-      width: 90%;
+      width: 80%;
       max-width: 600px;
     }
 
@@ -202,11 +211,18 @@
 
   #robot-is-typing {
     text-align: center;
-    margin-bottom: 2rem;
   }
 
   #bottom-area {
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    height: $bottom-area-height;
+    background-color: $dark-color;
+
     -webkit-box-shadow: 0px -5px 16px 0px $dark-color;
     -moz-box-shadow: 0px -5px 16px 0px $dark-color;
     box-shadow: 0px -22px 20px 0px $dark-color;
