@@ -1,12 +1,10 @@
 <script>
-  import { fly } from "svelte/transition";
-
   export let name = "";
   export let linkUrl = "/404";
   export let imageUrl = "";
 </script>
 
-<a href={linkUrl} class="provider" transition:fly={{ x: 20, duration: 300 }}>
+<a href={linkUrl} class="provider" >
   <img src={imageUrl} alt={name} />
   <div class="provider-name">{name}</div>
 </a>
