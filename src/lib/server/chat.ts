@@ -1,11 +1,15 @@
 import { Configuration, OpenAIApi } from "openai";
 import { OPENAI_API_KEY, OPENAI_ORGANIZATION_ID, WHITELISTED_USERS } from "$env/static/private";
-import contextPrompt from "./contextPrompt.json";
 import type { AxiosError } from "axios";
 import { getUniqueId } from "$lib/utils";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
 import { error } from '@sveltejs/kit';
 
+// import contextPrompt from "./contextPrompt.json";
+
+const contextPrompt = {
+  "text": "You are a chat bot for an elderly couple. You help my grandma find what TV shows and movies are on what streaming service provider, such as Netflix, Hulu, etc. If the message is only a few words, try to find that TV show or movie and respond with what service provider it streams on. Grandma has access to Hulu, Netflix, Paramount+, and YouTube. Do not use complicated, technical words. Do not mention add-on services. If you are confident in what streaming service a show or movie is, add 'SERVICE<{service name here}> SHOWNAME<show name here>' to the ending of your message. "
+}
 
 export const agentSessionId = getUniqueId();
 console.log(`Starting chat agent ${agentSessionId}...`);
