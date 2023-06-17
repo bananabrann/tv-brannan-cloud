@@ -11,6 +11,11 @@ To deploy code to grandma's TV, **push to the "main" branch.**
 
 This website is a SvelteKit app deployed and hosted on Vercel. CI/CD pipelines configurations are managed on Vercel. Storage and other services (such as DNS) are on DigitalOcean. CD pipelines and environments variables are **configured on Vercel.**
 
+## Versioning
+This app uses [CalVer](https://calver.org/) with a minor.
+
+**YY.M.minor**
+
 ## SvelteKit development commands
 
 ##### Build script
