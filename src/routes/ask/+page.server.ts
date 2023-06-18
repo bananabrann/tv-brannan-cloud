@@ -6,6 +6,7 @@ import type ChatMessage from "$lib/types/ChatMessage.interface";
 
 // const SESSION_STORAGE_CHAT_HISTORY_KEY = "chat-history";
 
+// @ts-ignore
 export function load({ getClientAddress, request }) {
   const clientIp = getClientAddress();
 
