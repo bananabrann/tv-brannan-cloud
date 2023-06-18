@@ -1,6 +1,6 @@
 {
   "name": "tv.brannan.cloud",
-  "version": "23.6.0",
+  "version": "23.6.2",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -13,7 +13,7 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^2.1.0",
+    "@sveltejs/adapter-vercel": "^3.0.1",
     "@sveltejs/kit": "^1.5.0",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.8.1",
