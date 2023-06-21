@@ -1,6 +1,6 @@
 # Grandma's TV
 ![Version](https://shields.io/github/package-json/v/bananabrann/tv.brannan.cloud?logo=npm)
-![Website](https://img.shields.io/website?down_color=red&down_message=offline&label=app&logo=vercel&up_color=green&up_message=online&url=https%3A%2F%2Ftv.brannan.cloud)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Ftv.brannan.cloud&logo=microsoftazure&logoColor=blue)
 
 A simple project to make navigating to various streaming services simple and easy for my grandma. This site is loaded directly onto a microprocessor behind their TV (it's secretly just a website, don't tell her) and is opened automatically when they turn their TV on.
 

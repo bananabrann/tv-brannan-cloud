@@ -1,6 +1,6 @@
 {
   "name": "tv.brannan.cloud",
-  "version": "23.6.21.0",
+  "version": "23.172",
   "private": true,
   "scripts": {
     "dev": "vite dev",

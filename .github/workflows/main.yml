@@ -63,10 +63,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
 #     - name: Upload artifacts
 #       uses: actions/upload-artifact@v2
 #       with:
 #         name: build
 #         path: build/
 #         retention-days: 7
-
