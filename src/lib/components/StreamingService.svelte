@@ -4,7 +4,7 @@
   export let imageUrl = "";
 </script>
 
-<a href={linkUrl} class="provider" >
+<a href={linkUrl} class="provider">
   <img src={imageUrl} alt={name} />
   <div class="provider-name">{name}</div>
 </a>

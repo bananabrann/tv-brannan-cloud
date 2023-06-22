@@ -4,8 +4,7 @@ import contextPrompt from "./contextPrompt.json";
 import type { AxiosError } from "axios";
 import { getUniqueId } from "$lib/utils";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
-import { error } from '@sveltejs/kit';
-
+import { error } from "@sveltejs/kit";
 
 export const agentSessionId = getUniqueId();
 console.log(`Starting chat agent ${agentSessionId}...`);
@@ -19,13 +18,13 @@ const openai = new OpenAIApi(configuration);
 // Send a message to the OpenAI API. Returns the response message.
 export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
   // Check if user is from a whitelisted IP
-  if (WHITELISTED_USERS.split(' ').filter((x) => x === ip).length < 1 ) {
+  if (WHITELISTED_USERS.split(" ").filter((x) => x === ip).length < 1) {
     console.log(`User IP "${ip}" attempted to send a message, but is not whitelisted.`);
 
     return {
       role: "system",
       content: "Error 403: User is not grandma"
-    }  as ChatMessage
+    } as ChatMessage;
   }
 
   try {
@@ -47,6 +46,6 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
         } as ChatMessage;
       });
   } catch (err: unknown | AxiosError | Error) {
-    throw error(500, {message: "Unknown error while sending to ChatGPT."});
+    throw error(500, { message: "Unknown error while sending to ChatGPT." });
   }
 }
