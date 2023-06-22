@@ -36,9 +36,7 @@ This website is a SvelteKit app deployed and hosted on Vercel. CI/CD pipelines c
 
 ### SOME_SECRET_HERE" is not exported by "$env/static/private", imported by "src/lib/server/{file}"
 
-The environment variables are not set.
-
-In GitHub Actions (or other pipeline providers), `env` of the YAML does not pass it to the app. The server needs the .env file to be created.
+The environment variables are not set. SvelteKit does not automatically create this file, but will throw an error if the app's environment variables are missing. So you need to create it wherever the app builds, i.e. in the pipeline or configuration files on Azure.
 
 ```yaml
 jobs:
