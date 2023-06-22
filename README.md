@@ -21,7 +21,7 @@ This website is a [SvelteKit](https://kit.svelte.dev/) app hosted on [Azure Stat
 
 `npm run build`
 
-> To deploy your app, the SvelteKit app needs the [Vercel adapter](https://kit.svelte.dev/docs/adapters).
+> To deploy your app, the SvelteKit app needs [this Azure SWA adapter](https://github.com/geoffrich/svelte-adapter-azure-swa). Learn more about adapters [here](https://kit.svelte.dev/docs/adapters).
 
 #### Preview production build
 
@@ -33,15 +33,13 @@ This website is a [SvelteKit](https://kit.svelte.dev/) app hosted on [Azure Stat
 
 ##### Start development build
 
-`npm run dev`, or if you're cool, `npm run dev -- --open`
+`npm run dev`, or if you're cool, `npm run dev -- --open` auto-opens the browser. 
 
 ## Common errors
 
 ### SOME_SECRET_HERE" is not exported by "$env/static/private", imported by "src/lib/server/{file}"
 
-The environment variables are not set.
-
-In GitHub Actions (or other pipeline providers), `env` of the YAML does not pass it to the app. The server needs the .env file to be created.
+The environment variables are not set. In GitHub Actions (or other pipeline providers), `env` of the YAML does not pass it to the app. The server needs the .env file to be created.
 
 ```yaml
 jobs:
