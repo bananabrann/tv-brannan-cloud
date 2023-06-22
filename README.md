@@ -1,4 +1,5 @@
 # Grandma's TV
+
 ![Version](https://shields.io/github/package-json/v/bananabrann/tv.brannan.cloud?logo=npm)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Ftv.brannan.cloud&logo=microsoftazure&logoColor=blue)
 
@@ -7,6 +8,7 @@ A simple project to make navigating to various streaming services simple and eas
 As of 1.1.0, tv.brannan.cloud now has a ChatGPT-powered chat bot that enables grandma to type the name of a show, and if it's a valid show on Netflix or Youtube, have the option to instantly navigate to the show on the website.
 
 ## Deploying this app
+
 To deploy code to grandma's TV, **push to the "main" branch.**
 
 This website is a SvelteKit app deployed and hosted on Vercel. CI/CD pipelines configurations are managed on Vercel. Storage and other services (such as DNS) are on DigitalOcean. CD pipelines and environments variables are **configured on Vercel.**
@@ -30,7 +32,6 @@ This website is a SvelteKit app deployed and hosted on Vercel. CI/CD pipelines c
 ##### Start development build
 
 `npm run dev`, or if you're cool, `npm run dev -- --open`
-
 
 ## Common errors
 
