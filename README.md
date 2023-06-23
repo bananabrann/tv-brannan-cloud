@@ -33,7 +33,7 @@ This website is a [SvelteKit](https://kit.svelte.dev/) app hosted on [Azure Stat
 
 ##### Start development build
 
-`npm run dev`, or if you're cool, `npm run dev -- --open` auto-opens the browser. 
+`npm run dev`, or if you're cool, `npm run dev -- --open` auto-opens the browser.
 
 ## Common errors
 
