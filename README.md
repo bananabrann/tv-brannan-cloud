@@ -9,6 +9,8 @@ As of 1.1.0, tv.brannan.cloud now has a ChatGPT-powered chat bot tailored for he
 
 > There is currently no way to "preview" the chat feature. Due to API costs, I only allow connections from a secret whitelist. Want this feature? [Leave an issue!](https://github.com/bananabrann/tv.brannan.cloud/issues)
 
+![demo-collage](https://files.brannan.cloud/tv-files/demo-collage.png)
+
 ## Deploying this app
 
 To deploy code to grandma's TV, **merge code into the "main" branch.** GitHub Actions will comment on your PR with the preview site, and deploy it when it's merged.
