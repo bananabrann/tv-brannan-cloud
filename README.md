@@ -1,15 +1,19 @@
 # Grandma's TV
+
 ![Version](https://shields.io/github/package-json/v/bananabrann/tv.brannan.cloud?logo=npm)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Ftv.brannan.cloud&logo=microsoftazure&logoColor=blue)
 
 A simple project to make navigating to various streaming services simple and easy for my grandma. This site is loaded directly onto a microprocessor behind their TV (it's secretly just a website, don't tell her) and is opened automatically when they turn their TV on.
 
-As of 1.1.0, tv.brannan.cloud now has a ChatGPT-powered chat bot that enables grandma to type the name of a show, and if it's a valid show on Netflix or Youtube, have the option to instantly navigate to the show on the website.
+As of 1.1.0, tv.brannan.cloud now has a ChatGPT-powered chat bot tailored for her to type the name of a show, and if it's a valid show on Netflix or Youtube, have the option to instantly navigate to the show on the website.
+
+> There is currently no way to "preview" the chat feature. Due to API costs, I only allow connections from a secret whitelist. Want this feature? [Leave an issue!](https://github.com/bananabrann/tv.brannan.cloud/issues)
 
 ## Deploying this app
-To deploy code to grandma's TV, **push to the "main" branch.**
 
-This website is a SvelteKit app deployed and hosted on Vercel. CI/CD pipelines configurations are managed on Vercel. Storage and other services (such as DNS) are on DigitalOcean. CD pipelines and environments variables are **configured on Vercel.**
+To deploy code to grandma's TV, **merge code into the "main" branch.** GitHub Actions will comment on your PR with the preview site, and deploy it when it's merged.
+
+This website is a [SvelteKit](https://kit.svelte.dev/) app hosted on [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static). Storage and other services are also on Azure.
 
 ## SvelteKit development commands
 
@@ -17,7 +21,7 @@ This website is a SvelteKit app deployed and hosted on Vercel. CI/CD pipelines c
 
 `npm run build`
 
-> To deploy your app, the SvelteKit app needs the [Vercel adapter](https://kit.svelte.dev/docs/adapters).
+> To deploy your app, the SvelteKit app needs [this Azure SWA adapter](https://github.com/geoffrich/svelte-adapter-azure-swa). Learn more about adapters [here](https://kit.svelte.dev/docs/adapters).
 
 #### Preview production build
 
@@ -29,8 +33,7 @@ This website is a SvelteKit app deployed and hosted on Vercel. CI/CD pipelines c
 
 ##### Start development build
 
-`npm run dev`, or if you're cool, `npm run dev -- --open`
-
+`npm run dev`, or if you're cool, `npm run dev -- --open` auto-opens the browser. 
 
 ## Common errors
 
