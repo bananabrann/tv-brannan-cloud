@@ -9,25 +9,25 @@
   <StreamingService
     name="Paramount"
     linkUrl="https://www.paramountplus.com/"
-    imageUrl="https://brannancloudstorage.blob.core.windows.net/tv-files/paramount-450x174.jpg"
+    imageUrl="https://files.brannan.cloud/tv-files/paramount-450x174.jpg"
   />
 
   <StreamingService
     name="Netflix"
     linkUrl="https://www.netflix.com/"
-    imageUrl="https://brannancloudstorage.blob.core.windows.net/tv-files/netflix-450x174.jpg"
+    imageUrl="https://files.brannan.cloud/tv-files/netflix-450x174.jpg"
   />
 
   <StreamingService
     name="Hulu"
     linkUrl="https://www.hulu.com/"
-    imageUrl="https://brannancloudstorage.blob.core.windows.net/tv-files/hulu-450x174.jpg"
+    imageUrl="https://files.brannan.cloud/tv-files/hulu-450x174.jpg"
   />
 
   <StreamingService
     name="YouTube"
     linkUrl="https://tv.youtube.com/welcome/"
-    imageUrl="https://brannancloudstorage.blob.core.windows.net/tv-files/youtube-450x174.jpg"
+    imageUrl="https://files.brannan.cloud/tv-files/youtube-450x174.jpg"
   />
 </section>
 
