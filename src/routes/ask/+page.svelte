@@ -16,6 +16,8 @@
   let isShowingMagicButton = false;
   let MagicButtonProps: MagicButtonProps;
 
+  console.log(`Client IP: ${data.clientIp}\nChatting with agent ${data.agentSessionId}`);
+
   $: if (messages.length > 1 && element) {
     scrollToBottom(element);
   }
@@ -96,9 +98,11 @@
 
   <section id="bottom-area">
     <br />
+
     {#if isShowingMagicButton}
       <MagicButton {MagicButtonProps} />
     {/if}
+
     <form
       action="?/send"
       method="POST"
@@ -128,6 +132,7 @@
         };
       }}
     >
+      <!-- svelte-ignore a11y-autofocus -->
       <input
         type="text"
         autocomplete="off"
@@ -146,8 +151,6 @@
 
       <button id="chat-submit-button" type="submit" disabled={isCreating}>Send message</button>
     </form>
-
-    <!-- <small>Chatting with agent <code>{data.agentSessionId}</code></small> -->
   </section>
 </content>
 
@@ -229,15 +232,5 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    small {
-      display: block;
-      width: 100%;
-      text-align: right;
-      margin-top: 1rem;
-      @media screen and (max-width: $breakpoint) {
-        text-align: center;
-      }
-    }
   }
 </style>

@@ -10,6 +10,7 @@ export function load({ getClientAddress, request }) {
   const clientIp = getClientAddress();
 
   return {
+    clientIp: clientIp,
     isWhiteListed: WHITELISTED_USERS.includes(clientIp),
     agentSessionId: agentSessionId
   };
