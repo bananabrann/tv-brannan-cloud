@@ -26,7 +26,7 @@
 
   <StreamingService
     name="YouTube"
-    linkUrl="https://tv.youtube.com/welcome/"
+    linkUrl="https://youtube.com/"
     imageUrl="https://files.brannan.cloud/tv-files/youtube-450x174.jpg"
   />
 </section>
