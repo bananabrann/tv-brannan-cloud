@@ -9,8 +9,9 @@
 <main>
   <nav>
     <div>
-      <!-- <a href="">View source code</a> -->
       <a href="/"> Home</a>
+      <span>|</span>
+      <a href="/whats-new">What's New</a>
       <span>|</span>
       <a href="/ask">Ask Lee</a>
     </div>
