@@ -39,8 +39,8 @@
   <article>
     <h3>Versions 1.1.2 ... 1.1.9</h3>
     <ul>
-      <li>Multiple improvements that make updating your TV easier.</li>
-      <li>Your TV now costs less to run (under $3 a month).</li>
+      <li>Behind-the-scenes improvements that make updating your TV easier.</li>
+      <li>Your TV now costs less to run (under $0.30 a month).</li>
     </ul>
   </article>
 
