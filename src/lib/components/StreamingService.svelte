@@ -18,8 +18,6 @@
     overflow: hidden;
     display: block;
     border-radius: 1.5rem;
-    max-width: 450px;
-
     img {
       @include gentle-transition();
       width: 100%;
