@@ -38,10 +38,9 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 10px;
+    padding: 0.25rem 0;
     background-color: rgba(0, 0, 0, 0.6);
     color: $light-color;
-    text-transform: uppercase;
     font-weight: bold;
   }
 </style>
