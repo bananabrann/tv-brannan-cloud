@@ -4,10 +4,16 @@
   <h3>Versions 1.1.11 ... 1.1.12</h3>
   <code>July 8th, 2023</code>
   <ul>
-    <li>You now have ESPN and ABC News Live on your TV <a href="/">homepage</a>. 
+    <li>
+      You now have ESPN and ABC News Live on your TV <a href="/">homepage</a>.
       <ul>
-        <li>This didn't cost anything extra. Both are included in my subscription for Hulu, and can also be accessed via Hulu.</li>
-        <li>ABC News Live is real, live news. What show you see depends on when you're accessing it.</li>
+        <li>
+          This didn't cost anything extra. Both are included in my subscription for Hulu, and can
+          also be accessed via Hulu.
+        </li>
+        <li>
+          ABC News Live is real, live news. What show you see depends on when you're accessing it.
+        </li>
       </ul>
     </li>
     <li>Track changes to your TV with this <a href="whats-new">What's New</a> page.</li>
