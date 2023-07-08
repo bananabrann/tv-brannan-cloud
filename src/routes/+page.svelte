@@ -29,6 +29,18 @@
     linkUrl="https://youtube.com/"
     imageUrl="https://files.brannan.cloud/tv-files/youtube-450x174.jpg"
   />
+
+  <StreamingService
+    name="ESPN on Hulu"
+    linkUrl="https://www.hulu.com/hub/sports"
+    imageUrl="https://files.brannan.cloud/tv-files/espn-450x174.jpg"
+  />
+
+  <StreamingService 
+    name="ABC News Live on Hulu"
+    linkUrl="https://www.hulu.com/hub/news-on-hulu"
+    imageUrl="https://files.brannan.cloud/tv-files/abcnewslive-450x174jpg.jpg"
+  />
 </section>
 
 <section />
