@@ -23,7 +23,7 @@ This website is a [SvelteKit](https://kit.svelte.dev/) app hosted on [Azure Stat
 
 `npm run build`
 
-> To deploy your app, the SvelteKit app needs [this Azure SWA adapter](https://github.com/geoffrich/svelte-adapter-azure-swa). Learn more about adapters [here](https://kit.svelte.dev/docs/adapters).
+> To deploy the tv.brannan.cloud app, the SvelteKit app needs [this Azure SWA adapter](https://github.com/geoffrich/svelte-adapter-azure-swa). Learn more about adapters [here](https://kit.svelte.dev/docs/adapters).
 
 #### Preview production build
 
