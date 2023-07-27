@@ -9,7 +9,7 @@
         <li>Contact me or mom for passcode.</li>
       </ul>
     </li>
-    <!-- <li><a href="/ask">Ask Lee</a> now requires a passcode.</li> -->
+    <!-- <li><a href="/ask">Ask Lee</a> no longer detects who you are. Instead, it requires a pass code.</li> -->
   </ul>
 </article>
 
@@ -20,7 +20,7 @@
 
 <section>
   <article>
-    <h3>Versions 1.1.11 ... 1.1.12</h3>
+    <h3>Versions 1.1.11 - 1.1.12</h3>
     <code>July 8th, 2023</code>
     <ul>
       <li>
@@ -50,7 +50,7 @@
   </article>
 
   <article>
-    <h3>Versions 1.1.2 ... 1.1.9</h3>
+    <h3>Versions 1.1.2 - 1.1.9</h3>
     <ul>
       <li>Behind-the-scenes improvements that make updating your TV easier.</li>
       <li>Your TV now costs less to run (under $0.30 a month).</li>
