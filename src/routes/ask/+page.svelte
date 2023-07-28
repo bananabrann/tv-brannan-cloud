@@ -120,16 +120,20 @@
 
           await update();
 
-          let messageData = result;
-
+          // TODO - Add type checking.
+          //@ts-ignore
           console.log(result.data.message);
 
           addMessageToArray({
+            // @ts-ignore
             role: result.data.message.role,
+            // @ts-ignore
             content: result.data.message.content
           });
 
+          // @ts-ignore
           if (result.data.success) {
+            // @ts-ignore
             determineMagicButton(result.data.message);
           }
         };
