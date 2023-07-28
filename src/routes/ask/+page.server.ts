@@ -1,7 +1,7 @@
 import { WHITELISTED_USERS } from "$env/static/private";
 import { agentSessionId, sendMessage } from "$lib/server/chat";
 import { isAChatMessage } from "$lib/types/ChatMessage.interface";
-import type { ActionFailure } from "@sveltejs/kit";
+import { fail, type ActionFailure } from "@sveltejs/kit";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
 
 // const SESSION_STORAGE_CHAT_HISTORY_KEY = "chat-history";
@@ -28,14 +28,12 @@ export const actions = {
     // Message content must be present. There's client-side validation, but this is just
     // in case the user is doing something hacky.
     if (!prompt) {
-      return {
-        status: 400,
-        success: false,
+      return fail(400, {
         message: {
           role: "system",
-          content: "Error 400: Bad Request"
+          content: "I didn't quite understand you. Please share this: Error 400-1"
         }
-      };
+      });
     }
 
     const response: ChatMessage | ActionFailure<any> = await sendMessage(
@@ -49,8 +47,8 @@ export const actions = {
         status: 200,
         success: true,
         message: {
-          role: "assistant",
-          content: response
+          role: response.role,
+          content: response.content
         }
       };
     } else {
@@ -58,14 +56,13 @@ export const actions = {
         "ActionFailure detected in ask/+page.server.ts. There is probably additional output."
       );
 
-      return {
-        status: 500,
+      return fail(500, {
         success: false,
         message: {
           role: "system",
           content: `Error 500: Something went wrong`
         }
-      };
+      });
     }
   }
 };

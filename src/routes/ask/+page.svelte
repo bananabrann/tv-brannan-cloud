@@ -116,18 +116,21 @@
         });
 
         return async ({ update, result }) => {
-          // if(result.status !== 200) { console.error"("Failed") }
-
           isCreating = false;
 
           await update();
 
-          // @ts-expect-error
-          let message = result.status === 200 ? result.data?.message.content : null;
+          let messageData = result;
 
-          if (message) {
-            addMessageToArray(message);
-            determineMagicButton(message);
+          console.log(result.data.message);
+
+          addMessageToArray({
+            role: result.data.message.role,
+            content: result.data.message.content
+          });
+
+          if (result.data.success) {
+            determineMagicButton(result.data.message);
           }
         };
       }}
