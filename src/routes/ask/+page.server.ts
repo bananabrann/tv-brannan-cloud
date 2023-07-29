@@ -11,7 +11,7 @@ export function load({ getClientAddress, request }) {
 
   return {
     clientIp: clientIp,
-    isWhiteListed: WHITELISTED_USERS.includes(clientIp),
+    isWhiteListed: true, // WHITELISTED_USERS.includes(clientIp),
     agentSessionId: agentSessionId
   };
 }

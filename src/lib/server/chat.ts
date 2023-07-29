@@ -18,6 +18,7 @@ const openai = new OpenAIApi(configuration);
 // Send a message to the OpenAI API. Returns the response message.
 export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
   // Check if user is from a whitelisted IP
+  /*
   if (WHITELISTED_USERS.split(" ").filter((x) => x === ip).length < 1) {
     console.log(`User IP "${ip}" attempted to send a message, but is not whitelisted.`);
 
@@ -26,6 +27,9 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
       content: "Error 403: User is not grandma"
     } as ChatMessage;
   }
+  */
+
+  // TODO - Log chat message to storage container
 
   try {
     return await openai
