@@ -1,10 +1,27 @@
 import { Configuration, OpenAIApi } from "openai";
-import { OPENAI_API_KEY, OPENAI_ORGANIZATION_ID, WHITELISTED_USERS } from "$env/static/private";
+import {
+  OPENAI_API_KEY,
+  OPENAI_ORGANIZATION_ID,
+  AZURE_STORAGE_ACCOUNT_NAME,
+  AZURE_STORAGE_SAS_TOKEN,
+  WHITELISTED_USERS
+} from "$env/static/private";
+import { BlobServiceClient } from "@azure/storage-blob";
+
 import contextPrompt from "./contextPrompt.json";
 import type { AxiosError } from "axios";
 import { getUniqueId } from "$lib/utils";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
 import { error } from "@sveltejs/kit";
+import { version } from "$app/environment";
+import { Readable } from "stream";
+
+const containerName = "tv-queries";
+const blobName = "logs.txt";
+
+const blobServiceClient = new BlobServiceClient(
+  `https://${AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net?${AZURE_STORAGE_SAS_TOKEN}`
+);
 
 export const agentSessionId = getUniqueId();
 console.log(`Starting chat agent ${agentSessionId}...`);
@@ -29,7 +46,7 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
   }
   */
 
-  // TODO - Log chat message to storage container
+  createLogEntry(message, ip);
 
   try {
     return await openai
@@ -53,3 +70,35 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
     throw error(500, { message: "Unknown error while sending to ChatGPT." });
   }
 }
+
+function createLogEntry(message: string, ip: string = "none"): string {
+  const timestamp = new Date().toUTCString();
+  appendLineAndUpdate().catch(console.error);
+  console.log("logged");
+  return `${timestamp} <${ip}@${agentSessionId}/${version}> ${message}`;
+}
+
+const appendLineAndUpdate = async () => {
+  const containerClient = blobServiceClient.getContainerClient(containerName);
+  const blobClient = containerClient.getBlockBlobClient(blobName);
+
+  const downloadResponse = await blobClient.download(0);
+  let fileContent =
+    (await streamToString(downloadResponse.readableStreamBody)) + "\nAppended line.";
+
+  const uploadStream = Readable.from([fileContent]);
+  await blobClient.uploadStream(uploadStream, fileContent.length);
+};
+
+const streamToString = async (readableStream: any): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const chunks: Array<any> = [];
+    readableStream.on("data", (data: any) => {
+      chunks.push(data.toString());
+    });
+    readableStream.on("end", () => {
+      resolve(chunks.join(""));
+    });
+    readableStream.on("error", reject);
+  });
+};
