@@ -2,14 +2,12 @@
 
 <article>
   <h3>Version 1.1.13</h3>
-  <code>Date TBD</code>
+  <code>July 30th, 2023</code>
   <ul>
-    <li>
-      New font to freshen up your TV. <ul>
-        <li>Contact me or mom for passcode.</li>
-      </ul>
-    </li>
-    <!-- <li><a href="/ask">Ask Lee</a> no longer detects who you are. Instead, it requires a pass code.</li> -->
+    <li>"Ask Lee" was renamed to "Find A Show".</li>
+    <li><a href="ask">Find A Show</a> should be working for you again.</li>
+    <li>Some behind-the-scenes changes that allows me to more easily see who uses Find A Show.</li>
+    <li>New font to freshen up your TV!</li>
   </ul>
 </article>
 
