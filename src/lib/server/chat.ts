@@ -1,4 +1,4 @@
-import { dev, version } from "$app/environment";
+import { version } from "$app/environment";
 import {
   AZURE_STORAGE_ACCOUNT_NAME,
   AZURE_STORAGE_SAS_TOKEN,
@@ -49,9 +49,7 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
   }
   */
 
-  if (!dev) {
-    createLogEntry(message, ip);
-  }
+  createLogEntry(message, ip);
 
   try {
     return await openai
