@@ -81,18 +81,21 @@ function createLogEntry(message: string, ip: string = "none"): void {
   appendLineAndUpdate(entry).catch(console.error);
 }
 
-const appendLineAndUpdate = async (message: string) => {
+async function appendLineAndUpdate(message: string) {
   const containerClient = blobServiceClient.getContainerClient(containerName);
   const blobClient = containerClient.getBlockBlobClient(blobName);
 
   const downloadResponse = await blobClient.download(0);
-  let fileContent = (await streamToString(downloadResponse.readableStreamBody)) + "\n" + message;
 
-  const uploadStream = Readable.from([fileContent]);
-  await blobClient.uploadStream(uploadStream, fileContent.length);
-};
+  if (downloadResponse.readableStreamBody) {
+    let fileContent = (await streamToString(downloadResponse.readableStreamBody)) + "\n" + message;
 
-const streamToString = async (readableStream: any): Promise<string> => {
+    const uploadStream = Readable.from([fileContent]);
+    await blobClient.uploadStream(uploadStream, fileContent.length);
+  }
+}
+
+async function streamToString(readableStream: NodeJS.ReadableStream): Promise<string> {
   return new Promise((resolve, reject) => {
     const chunks: Array<any> = [];
     readableStream.on("data", (data: any) => {
@@ -103,4 +106,4 @@ const streamToString = async (readableStream: any): Promise<string> => {
     });
     readableStream.on("error", reject);
   });
-};
+}
