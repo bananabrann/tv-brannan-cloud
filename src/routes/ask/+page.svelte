@@ -83,7 +83,7 @@
     <MessageBlock
       message={{
         role: "assistant",
-        content: `Keep in mind, I may be wrong and do not know information after September, 2021.`
+        content: `Keep in mind, I may be wrong and do not know information after September, 2021. By sending a message, you understand and consent that I log your messages and other information to ensure no abuse occurs.`
       }}
     />
 
