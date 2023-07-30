@@ -1,29 +1,32 @@
-import { Configuration, OpenAIApi } from "openai";
+import { version } from "$app/environment";
 import {
-  OPENAI_API_KEY,
-  OPENAI_ORGANIZATION_ID,
   AZURE_STORAGE_ACCOUNT_NAME,
   AZURE_STORAGE_SAS_TOKEN,
-  WHITELISTED_USERS
+  OPENAI_API_KEY,
+  OPENAI_ORGANIZATION_ID
 } from "$env/static/private";
+import type ChatMessage from "$lib/types/ChatMessage.interface";
+import { getUniqueId } from "$lib/utils";
+import type { AxiosError } from "axios";
+import { Configuration, OpenAIApi } from "openai";
+import { Readable } from "stream";
+
 import { BlobServiceClient } from "@azure/storage-blob";
+import { error } from "@sveltejs/kit";
 
 import contextPrompt from "./contextPrompt.json";
-import type { AxiosError } from "axios";
-import { getUniqueId } from "$lib/utils";
-import type ChatMessage from "$lib/types/ChatMessage.interface";
-import { error } from "@sveltejs/kit";
-import { version } from "$app/environment";
-import { Readable } from "stream";
 
 const containerName = "tv-queries";
 const blobName = "logs.txt";
+
+console.log("Initializing Azure Blob Storage...");
 
 const blobServiceClient = new BlobServiceClient(
   `https://${AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net?${AZURE_STORAGE_SAS_TOKEN}`
 );
 
 export const agentSessionId = getUniqueId();
+
 console.log(`Starting chat agent ${agentSessionId}...`);
 
 const configuration = new Configuration({
@@ -71,20 +74,19 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
   }
 }
 
-function createLogEntry(message: string, ip: string = "none"): string {
+function createLogEntry(message: string, ip: string = "none"): void {
   const timestamp = new Date().toUTCString();
-  appendLineAndUpdate().catch(console.error);
-  console.log("logged");
-  return `${timestamp} <${ip}@${agentSessionId}/${version}> ${message}`;
+  const entry = `${timestamp} <${ip}@${agentSessionId}/${version}> ${message}`;
+
+  appendLineAndUpdate(entry).catch(console.error);
 }
 
-const appendLineAndUpdate = async () => {
+const appendLineAndUpdate = async (message: string) => {
   const containerClient = blobServiceClient.getContainerClient(containerName);
   const blobClient = containerClient.getBlockBlobClient(blobName);
 
   const downloadResponse = await blobClient.download(0);
-  let fileContent =
-    (await streamToString(downloadResponse.readableStreamBody)) + "\nAppended line.";
+  let fileContent = (await streamToString(downloadResponse.readableStreamBody)) + "\n" + message;
 
   const uploadStream = Readable.from([fileContent]);
   await blobClient.uploadStream(uploadStream, fileContent.length);
