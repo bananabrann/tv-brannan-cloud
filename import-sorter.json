@@ -1,0 +1,7 @@
+{
+  "autoFormat": "off",
+  "quoteMark": "double",
+  "wrappingStyle": {
+    "maxBindingNamesPerLine": 2
+  }
+}

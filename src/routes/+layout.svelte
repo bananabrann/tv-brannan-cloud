@@ -13,7 +13,7 @@
       <span>|</span>
       <a href="/whats-new">What's New</a>
       <span>|</span>
-      <a href="/ask">Ask Lee</a>
+      <a href="/ask">Find A Show</a>
     </div>
 
     <div>

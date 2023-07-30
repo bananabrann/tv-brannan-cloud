@@ -83,7 +83,7 @@
     <MessageBlock
       message={{
         role: "assistant",
-        content: `Keep in mind, I may be wrong and do not know information after September, 2021.`
+        content: `Keep in mind, I may be wrong and do not know information after September, 2021. By sending a message, you understand and consent that I log your messages and other information to ensure no abuse occurs.`
       }}
     />
 
@@ -116,18 +116,25 @@
         });
 
         return async ({ update, result }) => {
-          // if(result.status !== 200) { console.error"("Failed") }
-
           isCreating = false;
 
           await update();
 
-          // @ts-expect-error
-          let message = result.status === 200 ? result.data?.message.content : null;
+          // TODO - Add type checking.
+          //@ts-ignore
+          console.log(result.data.message);
 
-          if (message) {
-            addMessageToArray(message);
-            determineMagicButton(message);
+          addMessageToArray({
+            // @ts-ignore
+            role: result.data.message.role,
+            // @ts-ignore
+            content: result.data.message.content
+          });
+
+          // @ts-ignore
+          if (result.data.success) {
+            // @ts-ignore
+            determineMagicButton(result.data.message);
           }
         };
       }}

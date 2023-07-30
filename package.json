@@ -1,6 +1,6 @@
 {
   "name": "tv.brannan.cloud",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -28,6 +28,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@azure/storage-blob": "^12.15.0",
     "axios": "^1.4.0",
     "openai": "^3.2.1",
     "svelte-material-icons": "^3.0.4"
