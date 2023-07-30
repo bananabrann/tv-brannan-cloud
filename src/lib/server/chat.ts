@@ -76,7 +76,7 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
 
 function createLogEntry(message: string, ip: string = "none"): void {
   let date = moment.utc();
-  let timestamp = date.zone("-05:00").format("YYYY/MM/DD HH:mm [GMT]Z");
+  let timestamp = date.utcOffset("-05:00").format("YYYY/MM/DD HH:mm [GMT]Z");
 
   const entry = `${timestamp} <${ip}@${agentSessionId}/${version}> ${message}`;
 
