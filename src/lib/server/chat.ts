@@ -8,6 +8,7 @@ import {
 import type ChatMessage from "$lib/types/ChatMessage.interface";
 import { getUniqueId } from "$lib/utils";
 import type { AxiosError } from "axios";
+import moment from "moment";
 import { Configuration, OpenAIApi } from "openai";
 import { Readable } from "stream";
 
@@ -63,7 +64,6 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
       })
       .then((res) => {
         const responseMessage = res?.data?.choices[0]?.message?.content;
-        // console.log(responseMessage);
         return {
           role: "assistant",
           content: responseMessage
@@ -75,10 +75,16 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
 }
 
 function createLogEntry(message: string, ip: string = "none"): void {
-  const timestamp = new Date().toUTCString();
+  let date = moment.utc();
+  let timestamp = date.zone("-05:00").format("YYYY/MM/DD HH:mm [GMT]Z");
+
   const entry = `${timestamp} <${ip}@${agentSessionId}/${version}> ${message}`;
 
-  appendLineAndUpdate(entry).catch(console.error);
+  try {
+    appendLineAndUpdate(entry);
+  } catch (err: unknown) {
+    console.error(err);
+  }
 }
 
 async function appendLineAndUpdate(message: string) {

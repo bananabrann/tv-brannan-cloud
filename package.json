@@ -30,6 +30,7 @@
   "dependencies": {
     "@azure/storage-blob": "^12.15.0",
     "axios": "^1.4.0",
+    "moment": "^2.29.4",
     "openai": "^3.2.1",
     "svelte-material-icons": "^3.0.4"
   }
