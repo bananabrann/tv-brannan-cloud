@@ -122,11 +122,8 @@
 
           // TODO - Add type checking.
 
-          console.log("---")
-          console.log(result.data.message);
-          
-
           addMessageToArray({
+            // @ts-ignore
             role: result.data?.message.role,
             // @ts-ignore
             content: result.data?.message.content
