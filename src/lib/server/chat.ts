@@ -52,7 +52,7 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
 
 
   // creating a log entry is definitely causing the 500 error
-  // createLogEntry(message, ip);
+  createLogEntry(message, ip);
 
   try {
     return await openai
