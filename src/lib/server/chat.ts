@@ -72,7 +72,7 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
         } as ChatMessage;
       });
   } catch (err: unknown | AxiosError | Error) {
-    throw error(500, { message: "Unknown error while sending to ChatGPT." });
+    throw error(500, { message: String(err) });
   }
 }
 

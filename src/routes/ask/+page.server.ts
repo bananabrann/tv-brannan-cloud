@@ -29,6 +29,7 @@ export const actions = {
     // in case the user is doing something hacky.
     if (!prompt) {
       return fail(400, {
+        success: false,
         message: {
           role: "system",
           content: "I didn't quite understand you. Please share this: Error 400-1"
