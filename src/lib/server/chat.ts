@@ -112,7 +112,7 @@ async function appendLineAndUpdate(message: string) {
   console.log("Blob uploaded successfully");
 }
 
-function streamToString(readableStream: NodeJS.ReadableStream): Promise<string> {
+async function streamToString(readableStream: NodeJS.ReadableStream): Promise<string> {
   console.log("streamToString");
 
   return new Promise((resolve, reject) => {
