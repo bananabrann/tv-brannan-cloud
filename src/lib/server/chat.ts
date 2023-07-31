@@ -50,6 +50,8 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
   }
   */
 
+
+  // creating a log entry is definitely causing the 500 error
   createLogEntry(message, ip);
 
   try {
@@ -101,7 +103,7 @@ async function appendLineAndUpdate(message: string) {
   }
 }
 
-async function streamToString(readableStream: NodeJS.ReadableStream): Promise<string> {
+function streamToString(readableStream: NodeJS.ReadableStream): Promise<string> {
   return new Promise((resolve, reject) => {
     const chunks: Array<any> = [];
     readableStream.on("data", (data: any) => {
