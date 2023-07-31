@@ -77,6 +77,8 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
 }
 
 function createLogEntry(message: string, ip: string = "none"): void {
+  console.log("createLogEntry");
+  
   let date = moment.utc();
   let timestamp = date.utcOffset("-05:00").format("YYYY/MM/DD HH:mm [GMT]Z");
 
@@ -90,6 +92,8 @@ function createLogEntry(message: string, ip: string = "none"): void {
 }
 
 async function appendLineAndUpdate(message: string) {
+  console.log("appendLineAndUpdate");
+  
   const containerClient = blobServiceClient.getContainerClient(containerName);
   const blobClient = containerClient.getBlockBlobClient(blobName);
 
@@ -104,6 +108,8 @@ async function appendLineAndUpdate(message: string) {
 }
 
 function streamToString(readableStream: NodeJS.ReadableStream): Promise<string> {
+  console.log("streamToString");
+  
   return new Promise((resolve, reject) => {
     const chunks: Array<any> = [];
     readableStream.on("data", (data: any) => {
