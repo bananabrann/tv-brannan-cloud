@@ -127,9 +127,9 @@
           
 
           addMessageToArray({
-            role: result.data.message.role,
+            role: result.data?.message.role,
             // @ts-ignore
-            content: result.data.message.content
+            content: result.data?.message.content
           });
 
           // @ts-ignore
