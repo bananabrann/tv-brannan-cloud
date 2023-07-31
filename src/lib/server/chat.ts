@@ -50,7 +50,6 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
   }
   */
 
-
   // creating a log entry is definitely causing the 500 error
   createLogEntry(message, ip);
 
@@ -78,7 +77,7 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
 
 function createLogEntry(message: string, ip: string = "none"): void {
   console.log("createLogEntry");
-  
+
   let date = moment.utc();
   let timestamp = date.utcOffset("-05:00").format("YYYY/MM/DD HH:mm [GMT]Z");
 
@@ -92,24 +91,30 @@ function createLogEntry(message: string, ip: string = "none"): void {
 }
 
 async function appendLineAndUpdate(message: string) {
-  console.log("appendLineAndUpdate");
-  
+  console.log("appendLineAndUpdate start");
+
   const containerClient = blobServiceClient.getContainerClient(containerName);
   const blobClient = containerClient.getBlockBlobClient(blobName);
 
+  console.log("Attempting to download blob...");
   const downloadResponse = await blobClient.download(0);
 
-  if (downloadResponse.readableStreamBody) {
-    let fileContent = (await streamToString(downloadResponse.readableStreamBody)) + "\n" + message;
-
-    const uploadStream = Readable.from([fileContent]);
-    await blobClient.uploadStream(uploadStream, fileContent.length);
+  if (!downloadResponse.readableStreamBody) {
+    console.error("Failed to download blob or blob was empty");
+    return;
   }
+
+  let fileContent = (await streamToString(downloadResponse.readableStreamBody)) + "\n" + message;
+
+  console.log("Attempting to upload blob...");
+  const uploadStream = Readable.from([fileContent]);
+  await blobClient.uploadStream(uploadStream, fileContent.length);
+  console.log("Blob uploaded successfully");
 }
 
 function streamToString(readableStream: NodeJS.ReadableStream): Promise<string> {
   console.log("streamToString");
-  
+
   return new Promise((resolve, reject) => {
     const chunks: Array<any> = [];
     readableStream.on("data", (data: any) => {
