@@ -104,7 +104,7 @@ async function appendLineAndUpdate(message: string) {
     return;
   }
 
-  let fileContent = (await streamToString(downloadResponse.readableStreamBody)) + "\n" + message;
+  let fileContent = (await streamToString(downloadResponse.readableStreamBody)) + "\n" + "New line" // message;
 
   console.log("Attempting to upload blob...");
   const uploadStream = Readable.from([fileContent]);
