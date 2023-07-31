@@ -50,7 +50,7 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
   }
   */
 
-  createLogEntry(message, ip);
+  // createLogEntry(message, ip);
 
   try {
     return await openai
