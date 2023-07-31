@@ -77,7 +77,7 @@
     <MessageBlock
       message={{
         role: "assistant",
-        content: `Hi 😀, I'm your chatbot. I can help you find where a TV show or movie is, or try to answer any questions you may have. Simply type the name of the show you're looking for, or ask your question. I'm able to hold a conversation! `
+        content: `Hi 😀, I'm your chatbot. I can help you find where a TV show or movie is, or try to answer any questions you may have. Simply type the name of the show you're looking for, or ask your question. I'm able to hold a conversation!`
       }}
     />
     <MessageBlock
@@ -121,11 +121,12 @@
           await update();
 
           // TODO - Add type checking.
-          //@ts-ignore
+
+          console.log("---")
           console.log(result.data.message);
+          
 
           addMessageToArray({
-            // @ts-ignore
             role: result.data.message.role,
             // @ts-ignore
             content: result.data.message.content
