@@ -130,10 +130,10 @@
           });
 
           // @ts-ignore
-          if (result.data.success) {
+          // if (result.data.success) {
             // @ts-ignore
             determineMagicButton(result.data.message);
-          }
+          //}
         };
       }}
     >
