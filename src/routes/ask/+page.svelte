@@ -1,11 +1,11 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
+  import MagicButton from "$lib/components/MagicButton.svelte";
+  import MessageBlock from "$lib/components/MessageBlock.svelte";
   import type ChatMessage from "$lib/types/ChatMessage.interface";
   import type MagicButtonProps from "$lib/types/MagicButtonProps.interface.js";
   import { isValidMagicButtonServiceProvider } from "$lib/types/MagicButtonProps.interface.js";
-  import { enhance } from "$app/forms";
-  import MessageBlock from "$lib/components/MessageBlock.svelte";
   import { afterUpdate } from "svelte";
-  import MagicButton from "$lib/components/MagicButton.svelte";
 
   export let data;
 
