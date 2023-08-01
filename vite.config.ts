@@ -4,18 +4,18 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [sveltekit()],
 
-  build: {
-    minify: "terser",
-    terserOptions: {
-      mangle: false,
-      sourceMap: true,
-      compress: false,
-      keep_classnames: /./,
-      keep_fnames: /./,
-      output: {
-        comments: false
-      }
+  esbuild: {
+    keepNames: true
+  },
+
+  optimizeDeps: {
+    esbuildOptions: {
+      keepNames: true
     }
+  },
+
+  build: {
+    minify: "esbuild"
   },
 
   test: {
