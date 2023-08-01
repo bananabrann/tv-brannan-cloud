@@ -116,6 +116,7 @@
         });
 
         return async ({ update, result }) => {
+          await update();
           isCreating = false;
 
           
@@ -128,7 +129,6 @@
 
           console.log("result.data?.message:");
           console.log(result.data?.message)
-          await update();
           
           // @ts-ignore
           // if (result.data.success) {
