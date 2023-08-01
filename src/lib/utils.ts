@@ -24,15 +24,16 @@ export async function downloadBlobToString(
   const downloadResponse: BlobDownloadResponseParsed = await blobClient.download();
 
   // TODO - Add type handling.
-  const downloaded: Promise<unknown> = (await streamToBuffer(
+  const downloaded = (await streamToBuffer(
     downloadResponse.readableStreamBody as unknown as ReadableStream
-  )) as Promise<unknown>;
+  ));
 
+  // ts-ignore
   return downloaded.toString();
 }
 
 // TODO - Add type handling.
-export async function streamToBuffer(readableStream: ReadableStream): Promise<unknown> {
+export async function streamToBuffer(readableStream: ReadableStream) {
   return new Promise((resolve, reject) => {
     //@ts-ignore
     const chunks = [];
