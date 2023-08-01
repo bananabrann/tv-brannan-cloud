@@ -5,8 +5,7 @@ import {
   OPENAI_ORGANIZATION_ID
 } from "$env/static/private";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
-// import { createBlobFromString, downloadBlobToString, getUniqueId } from "$lib/utils";
-import { getUniqueId } from "$lib/utils";
+import { createBlobFromString, downloadBlobToString, getUniqueId } from "$lib/utils";
 
 import type { AxiosError } from "axios";
 import moment from "moment";
@@ -36,7 +35,7 @@ const openai = new OpenAIApi(configuration);
 // Send a message to the OpenAI API. Returns the response message.
 export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
   try {
-    await createLogEntry(message, ip);
+    //await createLogEntry(message, ip);
 
     let openaiResponse = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
@@ -69,34 +68,4 @@ async function createLogEntry(message: string, ip: string = "none"): Promise<voi
   const newContent: string = existingLogs + "\n" + entry;
 
   createBlobFromString(containerClient, blobName, newContent);
-}
-
-export async function createBlobFromString(client, blobName, fileContentsAsString) {
-  const blockBlobClient = await client.getBlockBlobClient(blobName);
-
-  await blockBlobClient.upload(fileContentsAsString, fileContentsAsString.length);
-  console.log(`created blob ${blobName}`);
-}
-
-export async function downloadBlobToString(containerClient, blobName) {
-  const blobClient = containerClient.getBlobClient(blobName);
-
-  const downloadResponse = await blobClient.download();
-
-  const downloaded = await streamToBuffer(downloadResponse.readableStreamBody);
-
-  return downloaded.toString();
-}
-
-async function streamToBuffer(readableStream) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    readableStream.on("data", (data) => {
-      chunks.push(data instanceof Buffer ? data : Buffer.from(data));
-    });
-    readableStream.on("end", () => {
-      resolve(Buffer.concat(chunks));
-    });
-    readableStream.on("error", reject);
-  });
 }
