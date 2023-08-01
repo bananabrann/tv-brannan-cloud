@@ -119,21 +119,20 @@
           await update();
           isCreating = false;
 
-          
           // TODO - Add type checking.
-          
+
           addMessageToArray({
             role: result.data?.message.role,
             content: result.data?.message.content
           });
 
           console.log("result.data?.message:");
-          console.log(result.data?.message)
-          
+          console.log(result.data?.message);
+
           // @ts-ignore
           // if (result.data.success) {
-            // @ts-ignore
-            determineMagicButton(result.data?.message);
+          // @ts-ignore
+          determineMagicButton(result.data?.message);
           //}
         };
       }}

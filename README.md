@@ -55,6 +55,7 @@ jobs:
 ```
 
 ### Dockerbuild failed with exit code 1
+
 If Azure Static Web Apps fails to build and **there are no other errors**, it is most likely caused by deployment limits due to caching on Azure Static Web Apps. Because this project uses the free tier of ASWA, I have a limited number of deployments sites allowed. If rapidly developing and deploying, it is possible a new deployment request is sent before the previous deployment site is fully deleted.
 
 Wait a few minutes then try again.

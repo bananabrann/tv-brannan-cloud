@@ -45,14 +45,12 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
       ]
     });
 
-
     const responseMessage = openaiResponse?.data?.choices[0]?.message?.content;
 
     return {
       role: "assistant",
       content: responseMessage
     } as ChatMessage;
-
   } catch (err: unknown | AxiosError | Error) {
     console.error(err);
     throw error(500, { message: String(err) });
