@@ -33,11 +33,10 @@ const openai = new OpenAIApi(configuration);
 
 // Send a message to the OpenAI API. Returns the response message.
 export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
-  // await createLogEntry(message, ip);
-
+  
   try {
     return await openai
-      .createChatCompletion({
+    .createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
           { role: "system", content: contextPrompt.text }, // Context prompt.
@@ -47,6 +46,9 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
       })
       .then((res) => {
         const responseMessage = res?.data?.choices[0]?.message?.content;
+        
+        createLogEntry(message, ip);
+
         return {
           role: "assistant",
           content: responseMessage
