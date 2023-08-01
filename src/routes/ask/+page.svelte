@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { enhance } from "$app/forms";
+  import { applyAction, enhance } from "$app/forms";
   import MagicButton from "$lib/components/MagicButton.svelte";
   import MessageBlock from "$lib/components/MessageBlock.svelte";
   import type ChatMessage from "$lib/types/ChatMessage.interface";
@@ -108,6 +108,8 @@
       method="POST"
       class=""
       use:enhance={() => {
+        // Runs right before the form is submitted to the action.
+
         isCreating = true;
         isShowingMagicButton = false;
         addMessageToArray({
@@ -115,16 +117,18 @@
           content: inputTextMessage
         });
 
-        return async ({ update, result }) => {
-          await update();
+        // Runs when a response is received from the action.
+        return async ({ result, update }) => {
+          if (result.type === "error") await applyAction(result);
+
           isCreating = false;
 
-          // TODO - Add type checking.
-
-          addMessageToArray({
-            role: result.data?.message.role,
-            content: result.data?.message.content
-          });
+          if (result.type === "success" && result) {
+            addMessageToArray({
+              role: result.data?.message.role,
+              content: result.data?.message.content
+            });
+          }
 
           console.log("result.data?.message:");
           console.log(result.data?.message);
@@ -133,6 +137,8 @@
           // if (result.data.success) {
           // @ts-ignore
           determineMagicButton(result.data?.message);
+
+          update();
           //}
         };
       }}
