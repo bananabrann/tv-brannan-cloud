@@ -47,12 +47,13 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
       .then((res) => {
         const responseMessage = res?.data?.choices[0]?.message?.content;
         
-        createLogEntry(message, ip);
-
+        
         return {
           role: "assistant",
           content: responseMessage
         } as ChatMessage;
+      }).finally(() => {
+        createLogEntry(message, ip);
       });
   } catch (err: unknown | AxiosError | Error) {
     throw error(500, { message: String(err) });
