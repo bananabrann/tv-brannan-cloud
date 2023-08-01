@@ -16,7 +16,8 @@ export async function downloadBlobToString(containerClient, blobName) {
 
   const downloadResponse = await blobClient.download();
 
-  const downloaded = await streamToBuffer(downloadResponse.readableStreamBody);
+  // const downloaded = await streamToBuffer(downloadResponse.readableStreamBody);
+  const downloaded = "Hi"
 
   return downloaded.toString();
 }
