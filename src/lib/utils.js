@@ -4,6 +4,7 @@ export function getUniqueId() {
   return Math.random().toString(36).substring(7);
 }
 
+/*
 export async function createBlobFromString(client, blobName, fileContentsAsString) {
   const blockBlobClient = await client.getBlockBlobClient(blobName);
 
@@ -33,3 +34,4 @@ async function streamToBuffer(readableStream) {
     readableStream.on("error", reject);
   });
 }
+*/
