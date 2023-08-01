@@ -123,16 +123,14 @@
           // TODO - Add type checking.
 
           addMessageToArray({
-            // @ts-ignore
             role: result.data?.message.role,
-            // @ts-ignore
             content: result.data?.message.content
           });
 
           // @ts-ignore
           // if (result.data.success) {
             // @ts-ignore
-            determineMagicButton(result.data.message);
+            determineMagicButton(result.data?.message);
           //}
         };
       }}
