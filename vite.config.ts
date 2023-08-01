@@ -10,8 +10,8 @@ export default defineConfig({
       mangle: false,
       sourceMap: true,
       compress: false,
-      keep_classnames: true,
-      keep_fnames: true,
+      keep_classnames: /AbortSignal/,
+      keep_fnames: /AbortSignal/,
       output: {
         comments: false
       }
