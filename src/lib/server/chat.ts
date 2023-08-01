@@ -67,5 +67,5 @@ async function createLogEntry(message: string, ip: string = "none"): Promise<voi
   const existingLogs: string = await downloadBlobToString(containerClient, blobName);
   const newContent: string = existingLogs + "\n" + entry;
 
-  createBlobFromString(containerClient, blobName, newContent);
+  // createBlobFromString(containerClient, blobName, newContent);
 }
