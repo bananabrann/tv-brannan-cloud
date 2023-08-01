@@ -118,10 +118,9 @@
         return async ({ update, result }) => {
           isCreating = false;
 
-          await update();
-
+          
           // TODO - Add type checking.
-
+          
           addMessageToArray({
             role: result.data?.message.role,
             content: result.data?.message.content
@@ -129,7 +128,8 @@
 
           console.log("result.data?.message:");
           console.log(result.data?.message)
-
+          await update();
+          
           // @ts-ignore
           // if (result.data.success) {
             // @ts-ignore
