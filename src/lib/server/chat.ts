@@ -61,9 +61,11 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
 async function createLogEntry(message: string, ip: string = "none"): Promise<void> {
   const date = moment.utc();
   const timestamp = date.utcOffset("-05:00").format("YYYY/MM/DD HH:mm [GMT]Z");
+
   const entry = `${timestamp} <${ip}@${agentSessionId}/${version}> ${message}`;
   const containerClient = storageClient.getContainerClient("tv-files");
   const blobName = "tv-chat.logs.txt";
+
   const existingLogs: string = await downloadBlobToString(containerClient, blobName);
   const newContent: string = existingLogs + "\n" + entry;
 

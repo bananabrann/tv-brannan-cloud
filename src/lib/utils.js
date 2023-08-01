@@ -13,15 +13,18 @@ export async function createBlobFromString(client, blobName, fileContentsAsStrin
 
 export async function downloadBlobToString(containerClient, blobName) {
   const blobClient = await containerClient.getBlobClient(blobName);
-  
-  
-  /*
+
+  // FIXME
+  // The bug is confirmed on this line:
+  // const downloadResponse = await blobClient.download();
+
   const downloadResponse = await blobClient.download();
+
+  /*
   const downloaded = await streamToBuffer(downloadResponse.readableStreamBody);
   return downloaded.toString();
   */
-  return "hi"
-
+  return "hi";
 }
 
 async function streamToBuffer(readableStream) {
