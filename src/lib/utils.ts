@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import type { BlobDownloadResponseParsed, ContainerClient } from "@azure/storage-blob";
 
 export function getUniqueId() {
@@ -24,9 +26,9 @@ export async function downloadBlobToString(
   const downloadResponse: BlobDownloadResponseParsed = await blobClient.download();
 
   // TODO - Add type handling.
-  const downloaded = (await streamToBuffer(
+  const downloaded = await streamToBuffer(
     downloadResponse.readableStreamBody as unknown as ReadableStream
-  ));
+  );
 
   // ts-ignore
   return downloaded.toString();
@@ -35,18 +37,14 @@ export async function downloadBlobToString(
 // TODO - Add type handling.
 export async function streamToBuffer(readableStream: ReadableStream) {
   return new Promise((resolve, reject) => {
-    //@ts-ignore
     const chunks = [];
-    //@ts-ignore
     readableStream.on("data", (data) => {
       chunks.push(data instanceof Buffer ? data : Buffer.from(data));
     });
-    //@ts-ignore
     readableStream.on("end", () => {
-      //@ts-ignore
       resolve(Buffer.concat(chunks));
     });
-    //@ts-ignore
+
     readableStream.on("error", reject);
   });
 }
