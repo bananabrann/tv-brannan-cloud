@@ -27,15 +27,14 @@ export async function downloadBlobToString(
 
   // TODO - Add type handling.
   const downloaded = await streamToBuffer(
-    downloadResponse.readableStreamBody as unknown as ReadableStream
+    downloadResponse.readableStreamBody
   );
 
   // ts-ignore
   return downloaded.toString();
 }
 
-// TODO - Add type handling.
-export async function streamToBuffer(readableStream: ReadableStream) {
+async function streamToBuffer(readableStream) {
   return new Promise((resolve, reject) => {
     const chunks = [];
     readableStream.on("data", (data) => {
@@ -44,7 +43,6 @@ export async function streamToBuffer(readableStream: ReadableStream) {
     readableStream.on("end", () => {
       resolve(Buffer.concat(chunks));
     });
-
     readableStream.on("error", reject);
   });
 }
