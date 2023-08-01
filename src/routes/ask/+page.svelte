@@ -127,6 +127,9 @@
             content: result.data?.message.content
           });
 
+          console.log("result.data?.message:");
+          console.log(result.data?.message)
+
           // @ts-ignore
           // if (result.data.success) {
             // @ts-ignore
