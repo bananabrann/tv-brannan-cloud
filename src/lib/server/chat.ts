@@ -6,7 +6,6 @@ import {
 } from "$env/static/private";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
 import { createBlobFromString, downloadBlobToString, getUniqueId } from "$lib/utils";
-
 import type { AxiosError } from "axios";
 import moment from "moment";
 import { Configuration, OpenAIApi } from "openai";
@@ -69,5 +68,5 @@ async function createLogEntry(message: string, ip: string = "none"): Promise<voi
   const existingLogs: string = await downloadBlobToString(containerClient, blobName);
   const newContent: string = existingLogs + "\n" + entry;
 
-  // createBlobFromString(containerClient, blobName, newContent);
+  createBlobFromString(containerClient, blobName, newContent);
 }
