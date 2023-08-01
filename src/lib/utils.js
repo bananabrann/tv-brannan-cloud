@@ -20,7 +20,7 @@ export async function downloadBlobToString(containerClient, blobName) {
   const downloaded = await streamToBuffer(downloadResponse.readableStreamBody);
   return downloaded.toString();
   */
- return "hi"
+  return "hi"
 
 }
 
