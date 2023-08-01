@@ -5,13 +5,13 @@ export default defineConfig({
   plugins: [sveltekit()],
 
   build: {
-    minify: "terser",
-    terserOptions: {
-      mangle: true,
-      sourceMap: true,
-      keep_classnames: /AbortSignal/,
-      keep_fnames: /AbortSignal/
-    }
+    minify: false,
+    // terserOptions: {
+    //   mangle: true,
+    //   sourceMap: true,
+    //   keep_classnames: /AbortSignal/,
+    //   keep_fnames: /AbortSignal/
+    // }
   },
 
   test: {
