@@ -33,7 +33,7 @@ const openai = new OpenAIApi(configuration);
 
 // Send a message to the OpenAI API. Returns the response message.
 export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
-  createLogEntry(message, ip);
+  await createLogEntry(message, ip);
 
   try {
     return await openai
