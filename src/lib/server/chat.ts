@@ -53,7 +53,12 @@ export async function sendMessage(message: string, history: ChatMessage[] = [], 
 
         //
       });
-    // createLogEntry(message, ip);
+
+      // I LEFT OFF HERE
+      createLogEntry(message, ip);
+
+
+
     return response;
   } catch (err: unknown | AxiosError | Error) {
     throw error(500, { message: String(err) });
