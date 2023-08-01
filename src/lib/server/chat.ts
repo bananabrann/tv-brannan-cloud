@@ -9,9 +9,6 @@ import { createBlobFromString, downloadBlobToString, getUniqueId } from "$lib/ut
 import type { AxiosError } from "axios";
 import moment from "moment";
 import { Configuration, OpenAIApi } from "openai";
-import fs from "fs";
-import path from "path";
-import streamBuffers from "stream-buffers";
 
 import { BlobServiceClient, type BlockBlobUploadStreamOptions } from "@azure/storage-blob";
 import { error } from "@sveltejs/kit";
