@@ -1,29 +1,24 @@
 import { version } from "$app/environment";
 import {
-  AZURE_STORAGE_ACCOUNT_NAME,
-  AZURE_STORAGE_SAS_TOKEN,
+  AZURE_STORAGE_CONNECTION_STRING,
   OPENAI_API_KEY,
   OPENAI_ORGANIZATION_ID
 } from "$env/static/private";
 import type ChatMessage from "$lib/types/ChatMessage.interface";
-import { getUniqueId } from "$lib/utils";
+import { createBlobFromString, downloadBlobToString, getUniqueId } from "$lib/utils";
 import type { AxiosError } from "axios";
 import moment from "moment";
 import { Configuration, OpenAIApi } from "openai";
-import { Readable } from "stream";
 
-import { BlobServiceClient } from "@azure/storage-blob";
+import { BlobServiceClient, type BlockBlobUploadStreamOptions } from "@azure/storage-blob";
 import { error } from "@sveltejs/kit";
 
 import contextPrompt from "./contextPrompt.json";
 
-const containerName = "tv-queries";
-const blobName = "logs.txt";
-
 console.log("Initializing Azure Blob Storage...");
 
-const blobServiceClient = new BlobServiceClient(
-  `https://${AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net?${AZURE_STORAGE_SAS_TOKEN}`
+const storageClient: BlobServiceClient = BlobServiceClient.fromConnectionString(
+  AZURE_STORAGE_CONNECTION_STRING
 );
 
 export const agentSessionId = getUniqueId();
@@ -38,78 +33,40 @@ const openai = new OpenAIApi(configuration);
 
 // Send a message to the OpenAI API. Returns the response message.
 export async function sendMessage(message: string, history: ChatMessage[] = [], ip: string = "") {
-  // Check if user is from a whitelisted IP
-  /*
-  if (WHITELISTED_USERS.split(" ").filter((x) => x === ip).length < 1) {
-    console.log(`User IP "${ip}" attempted to send a message, but is not whitelisted.`);
+  try {
+    await createLogEntry(message, ip);
+
+    let openaiResponse = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: contextPrompt.text }, // Context prompt.
+        ...history, // Chat history.
+        { role: "user", content: message } // User's message.
+      ]
+    });
+
+    const responseMessage = openaiResponse?.data?.choices[0]?.message?.content;
 
     return {
-      role: "system",
-      content: "Error 403: User is not grandma"
+      role: "assistant",
+      content: responseMessage
     } as ChatMessage;
-  }
-  */
-
-  // createLogEntry(message, ip);
-
-  try {
-    return await openai
-      .createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [
-          { role: "system", content: contextPrompt.text }, // Context prompt.
-          ...history, // Chat history.
-          { role: "user", content: message } // User's message.
-        ]
-      })
-      .then((res) => {
-        const responseMessage = res?.data?.choices[0]?.message?.content;
-        return {
-          role: "assistant",
-          content: responseMessage
-        } as ChatMessage;
-      });
   } catch (err: unknown | AxiosError | Error) {
-    throw error(500, { message: "Unknown error while sending to ChatGPT." });
+    console.error(err);
+    throw error(500, { message: String(err) });
   }
 }
 
-function createLogEntry(message: string, ip: string = "none"): void {
-  let date = moment.utc();
-  let timestamp = date.utcOffset("-05:00").format("YYYY/MM/DD HH:mm [GMT]Z");
+async function createLogEntry(message: string, ip: string = "none"): Promise<void> {
+  const date = moment.utc();
+  const timestamp = date.utcOffset("-05:00").format("YYYY/MM/DD HH:mm [GMT]Z");
 
   const entry = `${timestamp} <${ip}@${agentSessionId}/${version}> ${message}`;
+  const containerClient = storageClient.getContainerClient("tv-files");
+  const blobName = "tv-chat.logs.txt";
 
-  try {
-    appendLineAndUpdate(entry);
-  } catch (err: unknown) {
-    console.error(err);
-  }
-}
+  const existingLogs: string = await downloadBlobToString(containerClient, blobName);
+  const newContent: string = existingLogs + "\n" + entry;
 
-async function appendLineAndUpdate(message: string) {
-  const containerClient = blobServiceClient.getContainerClient(containerName);
-  const blobClient = containerClient.getBlockBlobClient(blobName);
-
-  const downloadResponse = await blobClient.download(0);
-
-  if (downloadResponse.readableStreamBody) {
-    let fileContent = (await streamToString(downloadResponse.readableStreamBody)) + "\n" + message;
-
-    const uploadStream = Readable.from([fileContent]);
-    await blobClient.uploadStream(uploadStream, fileContent.length);
-  }
-}
-
-async function streamToString(readableStream: NodeJS.ReadableStream): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const chunks: Array<any> = [];
-    readableStream.on("data", (data: any) => {
-      chunks.push(data.toString());
-    });
-    readableStream.on("end", () => {
-      resolve(chunks.join(""));
-    });
-    readableStream.on("error", reject);
-  });
+  createBlobFromString(containerClient, blobName, newContent);
 }

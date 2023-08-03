@@ -29,6 +29,7 @@ export const actions = {
     // in case the user is doing something hacky.
     if (!prompt) {
       return fail(400, {
+        success: false,
         message: {
           role: "system",
           content: "I didn't quite understand you. Please share this: Error 400-1"
@@ -44,7 +45,7 @@ export const actions = {
 
     if (isAChatMessage(response)) {
       return {
-        status: 200,
+        // status: 200,
         success: true,
         message: {
           role: response.role,
@@ -57,7 +58,6 @@ export const actions = {
       );
 
       return fail(500, {
-        success: false,
         message: {
           role: "system",
           content: `Error 500: Something went wrong`
