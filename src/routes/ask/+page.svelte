@@ -125,21 +125,17 @@
 
           if (result.type === "success" && result) {
             addMessageToArray({
+              // @ts-ignore
               role: result.data?.message.role,
+              // @ts-ignore
               content: result.data?.message.content
             });
           }
 
-          console.log("result.data?.message:");
-          console.log(result.data?.message);
-
-          // @ts-ignore
-          // if (result.data.success) {
           // @ts-ignore
           determineMagicButton(result.data?.message);
 
           update();
-          //}
         };
       }}
     >

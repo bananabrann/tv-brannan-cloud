@@ -18,7 +18,7 @@
     "prettier-plugin-svelte": "^2.8.1",
     "sass": "^1.62.0",
     "svelte": "^3.54.0",
-    "svelte-adapter-azure-swa": "github:bananabrann/svelte-adapter-azure-swa#bananabrann/#148-external-esbuild",
+    "svelte-adapter-azure-swa": "^0.18.0",
     "svelte-check": "^3.0.1",
     "svelte-preprocess": "^5.0.3",
     "tslib": "^2.4.1",
