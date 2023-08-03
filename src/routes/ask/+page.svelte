@@ -1,11 +1,11 @@
 <script lang="ts">
+  import { applyAction, enhance } from "$app/forms";
+  import MagicButton from "$lib/components/MagicButton.svelte";
+  import MessageBlock from "$lib/components/MessageBlock.svelte";
   import type ChatMessage from "$lib/types/ChatMessage.interface";
   import type MagicButtonProps from "$lib/types/MagicButtonProps.interface.js";
   import { isValidMagicButtonServiceProvider } from "$lib/types/MagicButtonProps.interface.js";
-  import { enhance } from "$app/forms";
-  import MessageBlock from "$lib/components/MessageBlock.svelte";
   import { afterUpdate } from "svelte";
-  import MagicButton from "$lib/components/MagicButton.svelte";
 
   export let data;
 
@@ -77,7 +77,7 @@
     <MessageBlock
       message={{
         role: "assistant",
-        content: `Hi 😀, I'm your chatbot. I can help you find where a TV show or movie is, or try to answer any questions you may have. Simply type the name of the show you're looking for, or ask your question. I'm able to hold a conversation! `
+        content: `Hi 😀, I'm your chatbot. I can help you find where a TV show or movie is, or try to answer any questions you may have. Simply type the name of the show you're looking for, or ask your question. I'm able to hold a conversation!`
       }}
     />
     <MessageBlock
@@ -108,6 +108,8 @@
       method="POST"
       class=""
       use:enhance={() => {
+        // Runs right before the form is submitted to the action.
+
         isCreating = true;
         isShowingMagicButton = false;
         addMessageToArray({
@@ -115,27 +117,29 @@
           content: inputTextMessage
         });
 
-        return async ({ update, result }) => {
+        // Runs when a response is received from the action.
+        return async ({ result, update }) => {
+          if (result.type === "error") await applyAction(result);
+
           isCreating = false;
 
-          await update();
+          if (result.type === "success" && result) {
+            addMessageToArray({
+              role: result.data?.message.role,
+              content: result.data?.message.content
+            });
+          }
 
-          // TODO - Add type checking.
-          //@ts-ignore
-          console.log(result.data.message);
-
-          addMessageToArray({
-            // @ts-ignore
-            role: result.data.message.role,
-            // @ts-ignore
-            content: result.data.message.content
-          });
+          console.log("result.data?.message:");
+          console.log(result.data?.message);
 
           // @ts-ignore
-          if (result.data.success) {
-            // @ts-ignore
-            determineMagicButton(result.data.message);
-          }
+          // if (result.data.success) {
+          // @ts-ignore
+          determineMagicButton(result.data?.message);
+
+          update();
+          //}
         };
       }}
     >
