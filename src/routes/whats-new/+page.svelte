@@ -1,11 +1,10 @@
 <br />
 
 <article>
-  <h3>Versions 1.1.13 - 1.1.14</h3>
+  <h3>Version 1.5</h3>
   <code>July 30th, 2023</code>
   <ul>
     <li>"Ask Lee" was renamed to "Find A Show".</li>
-    <li><a href="ask">Find A Show</a> should be working for you again.</li>
     <li>Some behind-the-scenes changes that allows me to more easily see who uses Find A Show.</li>
     <li>New font to freshen up your TV!</li>
   </ul>
@@ -18,7 +17,7 @@
 
 <section>
   <article>
-    <h3>Versions 1.1.11 - 1.1.12</h3>
+    <h3>Version 1.4</h3>
     <code>July 8th, 2023</code>
     <ul>
       <li>
@@ -39,7 +38,7 @@
   </article>
 
   <article>
-    <h3>Version 1.1.10</h3>
+    <h3>Version 1.3.10</h3>
     <code>July 3rd, 2023</code>
 
     <ul>
@@ -48,7 +47,7 @@
   </article>
 
   <article>
-    <h3>Versions 1.1.2 - 1.1.9</h3>
+    <h3>Versions 1.3.0 - 1.3.9</h3>
     <ul>
       <li>Behind-the-scenes improvements that make updating your TV easier.</li>
       <li>Your TV now costs less to run (under $0.30 a month).</li>
@@ -56,7 +55,7 @@
   </article>
 
   <article>
-    <h3>Version 1.1.1</h3>
+    <h3>Version 1.2</h3>
     <code>June 10th, 2023</code>
     <ul>
       <li>Ask Lee now detects if you are grandma.</li>
@@ -64,7 +63,7 @@
   </article>
 
   <article>
-    <h3>Version 1.1.0</h3>
+    <h3>Version 1.1</h3>
     <code>June 6th, 2023</code>
     <ul>
       <li>Backend improvements that make your TV more reliable and faster.</li>
