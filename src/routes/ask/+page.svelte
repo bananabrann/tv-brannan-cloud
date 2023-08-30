@@ -97,8 +97,6 @@
   </section>
 
   <section id="bottom-area">
-    <br />
-
     {#if isShowingMagicButton}
       <MagicButton {MagicButtonProps} />
     {/if}
@@ -161,6 +159,7 @@
   </section>
 </content>
 
+<!-- FIXME - Shouldn't break tag here -->
 <br />
 
 <style lang="scss">

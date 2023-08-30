@@ -1,5 +1,3 @@
-<br />
-
 <article>
   <h3>Version 1.5</h3>
   <code>July 30th, 2023</code>
@@ -82,6 +80,8 @@
   }
 
   article {
+    margin: 1rem 0;
+
     h3 {
       display: inline;
     }
