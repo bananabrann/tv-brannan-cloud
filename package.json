@@ -1,6 +1,6 @@
 {
   "name": "tv.brannan.cloud",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -14,8 +14,6 @@
   },
   "devDependencies": {
     "@sveltejs/kit": "^1.5.0",
-    "prettier": "^2.8.0",
-    "prettier-plugin-svelte": "^2.8.1",
     "sass": "^1.62.0",
     "svelte": "^3.54.0",
     "svelte-adapter-azure-swa": "^0.18.0",
@@ -32,6 +30,8 @@
     "axios": "~1.4.0",
     "moment": "~2.29.4",
     "openai": "~3.2.1",
+    "prettier": "^2.8.0",
+    "prettier-plugin-svelte": "^2.8.1",
     "svelte-material-icons": "^3.0.4"
   }
 }

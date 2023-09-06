@@ -1,9 +1,9 @@
 <script>
-  import StreamingService from "../lib/components/StreamingService.svelte";
+  import ShowOfTheWeek from "$lib/components/ShowOfTheWeek.svelte";
+  import StreamingService from "$lib/components/StreamingService.svelte";
 </script>
 
-<br />
-<br />
+<ShowOfTheWeek providerName="Hulu" showName="9-1-1" recommendedBy="Alex" />
 
 <section id="streaming-providers-container">
   <StreamingService
@@ -49,8 +49,7 @@
 
 <style>
   #streaming-providers-container {
-    /* max-width: 80%; */
-    margin: 0 auto;
+    margin-top: 2em;
     display: flex;
     align-items: flex-start;
     justify-content: center;

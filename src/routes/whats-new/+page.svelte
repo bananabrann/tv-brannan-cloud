@@ -1,12 +1,11 @@
-<br />
-
 <article>
-  <h3>Version 1.5</h3>
-  <code>July 30th, 2023</code>
+  <h3>Version 1.6</h3>
+  <code>September 6th, 2023</code>
   <ul>
-    <li>"Ask Lee" was renamed to "Find A Show".</li>
-    <li>Some behind-the-scenes changes that allows me to more easily see who uses Find A Show.</li>
-    <li>New font to freshen up your TV!</li>
+    <li>
+      Added "Show of the Week" to your homepage, allowing you to see some recommendations from the
+      family on what to watch.
+    </li>
   </ul>
 </article>
 
@@ -16,6 +15,18 @@
 </div>
 
 <section>
+  <article>
+    <h3>Version 1.5</h3>
+    <code>July 30th, 2023</code>
+    <ul>
+      <li>"Ask Lee" was renamed to "Find A Show".</li>
+      <li>
+        Some behind-the-scenes changes that allows me to more easily see who uses Find A Show.
+      </li>
+      <li>New font to freshen up your TV!</li>
+    </ul>
+  </article>
+
   <article>
     <h3>Version 1.4</h3>
     <code>July 8th, 2023</code>
@@ -82,6 +93,8 @@
   }
 
   article {
+    margin: 1rem 0;
+
     h3 {
       display: inline;
     }
