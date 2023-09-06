@@ -27,12 +27,14 @@
     gap: 0.75rem;
     margin: 1rem auto;
     padding: 0.85rem;
-    height: 200px;
+    min-height: 200px;
     border: 2px solid lighten($dark-color, 10%);
     border-radius: 0.5rem;
 
     img {
-      height: 100%;
+      height: 200px;
+      max-width: 25%;
+      object-fit: cover;
     }
 
     h2 {
