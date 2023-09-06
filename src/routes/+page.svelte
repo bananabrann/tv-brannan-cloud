@@ -1,6 +1,9 @@
 <script>
-  import StreamingService from "../lib/components/StreamingService.svelte";
+  import ShowOfTheWeek from "$lib/components/ShowOfTheWeek.svelte";
+  import StreamingService from "$lib/components/StreamingService.svelte";
 </script>
+
+<ShowOfTheWeek providerName="Hulu" showName="9-1-1" recommendedBy="Alex" />
 
 <section id="streaming-providers-container">
   <StreamingService
