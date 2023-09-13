@@ -3,7 +3,12 @@
   import StreamingService from "$lib/components/StreamingService.svelte";
 </script>
 
-<ShowOfTheWeek providerName="Hulu" showName="9-1-1" recommendedBy="Alex" />
+<!-- prettier-ignore -->
+<ShowOfTheWeek
+  providerName="Netflix"
+  showName="Dahmer"
+  recommendedBy="Alex"
+/>
 
 <section id="streaming-providers-container">
   <StreamingService
