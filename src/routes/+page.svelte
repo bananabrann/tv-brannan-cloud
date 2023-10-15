@@ -55,6 +55,7 @@
 <style>
   #streaming-providers-container {
     margin-top: 2em;
+    margin-bottom: 75px;
     display: flex;
     align-items: flex-start;
     justify-content: center;

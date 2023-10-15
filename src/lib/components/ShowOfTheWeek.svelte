@@ -27,12 +27,11 @@
     gap: 0.75rem;
     margin: 1rem auto;
     padding: 0.85rem;
-    min-height: 200px;
     border: 2px solid lighten($dark-color, 10%);
     border-radius: 0.5rem;
 
     img {
-      height: 200px;
+      height: 150px;
       max-width: 25%;
       object-fit: cover;
     }
@@ -51,6 +50,10 @@
       margin: 0;
       font-size: 1rem;
       font-weight: normal;
+    }
+
+    p {
+      margin: 0;
     }
   }
 </style>
