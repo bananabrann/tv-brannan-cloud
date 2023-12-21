@@ -6,7 +6,7 @@
 <!-- prettier-ignore -->
 <ShowOfTheWeek
   providerName="Netflix"
-  showName="Dahmer"
+  showName="Knock at the Cabin"
   recommendedBy="Alex"
 />
 
