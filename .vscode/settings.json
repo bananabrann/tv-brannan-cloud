@@ -1,9 +1,4 @@
 {
-  "cSpell.words": [
-    "brannan",
-    "Chatbox",
-    "openai",
-    "OPENAI"
-  ],
+  "cSpell.words": ["brannan", "Chatbox", "openai", "OPENAI"],
   "prettier.prettierPath": "./node_modules/prettier"
 }
