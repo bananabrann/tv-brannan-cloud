@@ -1,4 +1,4 @@
-name: Azure SWA CI/CD
+name: Azure Static Web Apps
 
 on:
   workflow_dispatch:
