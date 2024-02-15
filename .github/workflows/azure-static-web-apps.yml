@@ -1,4 +1,4 @@
-name: Azure Static Web Apps CI/CD
+name: Azure Static Web Apps
 
 on:
   workflow_dispatch:
@@ -11,6 +11,20 @@ on:
       - main
 
 jobs:
+  remove_comment:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-22.04
+    name: Delete Old Bot Comment
+    steps:
+      - name: pr-deleter
+        uses: maheshrayas/action-pr-comment-delete@06d7254b4aeba4491a66a7e0f755b107f7373ccd
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          org: "bananabrann"
+          repo: "tv.brannan.cloud"
+          user: "github-actions[bot]"
+          issue: "${{github.event.number}}"
+
   build_and_deploy:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
@@ -34,7 +48,7 @@ jobs:
           echo "OPENAI_ORGANIZATION_ID=${{ secrets.OPENAI_ORGANIZATION_ID }}" >> .env
           echo "WHITELISTED_USERS"="" >> .env
 
-      - name: Build and Deploy
+      - name: Build and deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -53,7 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Close Pull Request
     steps:
-      - name: Close Pull Request
+      - name: Close pull request
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
