@@ -3,6 +3,8 @@
   import StreamingService from "$lib/components/StreamingService.svelte";
 </script>
 
+<p>Yay hello amy</p>
+
 <!-- prettier-ignore -->
 <ShowOfTheWeek
   providerName="Netflix"
