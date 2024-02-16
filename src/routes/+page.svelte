@@ -10,7 +10,7 @@
   recommendedBy="Alex"
 />
 
-<h1>Hello Sangeeta</h1>
+<h1>Hello Sangewfwfw</h1>
 
 <section id="streaming-providers-container">
   <StreamingService
