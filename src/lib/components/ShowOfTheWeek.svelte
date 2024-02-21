@@ -12,7 +12,7 @@
     <h2>What to Watch</h2>
     <h3>{showName}</h3>
     <p>
-      Streaming on {providerName}<br />
+      Streaming on <b>{providerName}</b><br />
       Recommended by {recommendedBy}
     </p>
   </div>
