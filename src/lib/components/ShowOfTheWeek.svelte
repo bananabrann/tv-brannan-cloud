@@ -9,10 +9,10 @@
   <img src={ShowOfTheWeekJpg} alt="Cover art for the show of the week" />
 
   <div>
-    <h2>Show of the week</h2>
+    <h2>What to Watch</h2>
     <h3>{showName}</h3>
     <p>
-      Streaming on {providerName}<br />
+      Streaming on <b>{providerName}</b><br />
       Recommended by {recommendedBy}
     </p>
   </div>
@@ -41,15 +41,11 @@
       font-size: 1.5rem;
       font-weight: normal;
     }
+
     h3 {
       margin: 0;
       font-size: 3rem;
       font-weight: bold;
-    }
-    h4 {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: normal;
     }
 
     p {

@@ -5,9 +5,9 @@
 
 <!-- prettier-ignore -->
 <ShowOfTheWeek
-  providerName="Netflix"
-  showName="Knock at the Cabin"
-  recommendedBy="Alex"
+  providerName="Hulu"
+  showName="Joy Ride"
+  recommendedBy="Lee and Alex"
 />
 
 <section id="streaming-providers-container">
@@ -47,10 +47,6 @@
     imageUrl="https://files.brannan.cloud/tv-files/abcnewslive-450x174jpg.jpg"
   /> -->
 </section>
-
-<section />
-
-<!-- <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
 
 <style>
   #streaming-providers-container {
