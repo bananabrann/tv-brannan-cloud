@@ -5,9 +5,9 @@
 
 <!-- prettier-ignore -->
 <ShowOfTheWeek
-  providerName="Netflix"
-  showName="Knock at the Cabin"
-  recommendedBy="Alex"
+  providerName="Hulu"
+  showName="Joy Ride"
+  recommendedBy="Lee and Alex"
 />
 
 <section id="streaming-providers-container">
