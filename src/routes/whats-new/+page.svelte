@@ -1,11 +1,31 @@
 <article>
-  <h3>Version 1.6</h3>
-  <code>September 6th, 2023</code>
+  <h3>May 20th, 2024</h3>
+
+  <p>Summer is here, and with your new TV comes updates and housekeeping to your TV:</p>
   <ul>
+    <li>Removed "Show of the Week" from your homepage.</li>
     <li>
-      Added "Show of the Week" to your homepage, allowing you to see some recommendations from the
-      family on what to watch.
+      Updated what services you have and see on your homepage due to usage. If you would like to
+      have them back, just let me know.
+      <ul>
+        <li>Removed Hulu.</li>
+        <li>Removed ABC Live News.</li>
+        <li>Removed ESPN+</li>
+        <li>Removed Paramount+</li>
+      </ul>
     </li>
+    <li>
+      Removed "Find A Show" temporarily.
+      <ul>
+        <li>
+          I have a updates I need to make behind-the-scenes. If you need help finding a show, let me
+          or mom know.
+        </li>
+      </ul>
+    </li>
+
+    <li>Several minor style updates to make your TV look cleaner.</li>
+    <li>Backend tweaks to keep your TV up to date.</li>
   </ul>
 </article>
 
@@ -16,8 +36,17 @@
 
 <section>
   <article>
-    <h3>Version 1.5</h3>
-    <code>July 30th, 2023</code>
+    <h3>September 6th, 2023</h3>
+    <ul>
+      <li>
+        Added "Show of the Week" to your homepage, allowing you to see some recommendations from the
+        family on what to watch.
+      </li>
+    </ul>
+  </article>
+
+  <article>
+    <h3>July 30th, 2023</h3>
     <ul>
       <li>"Ask Lee" was renamed to "Find A Show".</li>
       <li>
@@ -28,8 +57,7 @@
   </article>
 
   <article>
-    <h3>Version 1.4</h3>
-    <code>July 8th, 2023</code>
+    <h3>July 8th, 2023</h3>
     <ul>
       <li>
         You now have ESPN and ABC News Live on your TV <a href="/">homepage</a>.
@@ -45,38 +73,18 @@
       </li>
       <li>Track changes to your TV with this <a href="whats-new">What's New</a> page.</li>
       <li>Added some secret things that help me know who tries to access Ask Lee.</li>
-    </ul>
-  </article>
-
-  <article>
-    <h3>Version 1.3.10</h3>
-    <code>July 3rd, 2023</code>
-
-    <ul>
       <li>Fixed YouTube's link.</li>
-    </ul>
-  </article>
 
-  <article>
-    <h3>Versions 1.3.0 - 1.3.9</h3>
-    <ul>
       <li>Behind-the-scenes improvements that make updating your TV easier.</li>
       <li>Your TV now costs less to run (under $0.30 a month).</li>
     </ul>
   </article>
 
   <article>
-    <h3>Version 1.2</h3>
-    <code>June 10th, 2023</code>
+    <h3>June 10th, 2023</h3>
+    <!-- <code>June 10th, 2023</code> -->
     <ul>
       <li>Ask Lee now detects if you are grandma.</li>
-    </ul>
-  </article>
-
-  <article>
-    <h3>Version 1.1</h3>
-    <code>June 6th, 2023</code>
-    <ul>
       <li>Backend improvements that make your TV more reliable and faster.</li>
       <li>
         A new <a href="/ask">Ask Lee</a> feature, allowing you to ask it questions on who has your favorite
