@@ -1,36 +1,38 @@
 <script>
-  import ShowOfTheWeek from "$lib/components/ShowOfTheWeek.svelte";
+  // import ShowOfTheWeek from "$lib/components/ShowOfTheWeek.svelte";
   import StreamingService from "$lib/components/StreamingService.svelte";
 </script>
 
 <!-- prettier-ignore -->
-<ShowOfTheWeek
-  providerName="Hulu"
-  showName="Joy Ride"
-  recommendedBy="Lee and Alex"
-/>
+<!-- 
+  <ShowOfTheWeek
+    providerName="Hulu"
+    showName="Joy Ride"
+    recommendedBy="Lee and Alex"
+  />
+ -->
 
 <section id="streaming-providers-container">
-  <StreamingService
+  <!-- <StreamingService
     name="Paramount"
     linkUrl="https://www.paramountplus.com/"
     imageUrl="https://files.brannan.cloud/tv-files/paramount-450x174.jpg"
-  />
+  /> -->
 
   <StreamingService
-    name="Netflix"
+    name=""
     linkUrl="https://www.netflix.com/"
     imageUrl="https://files.brannan.cloud/tv-files/netflix-450x174.jpg"
   />
 
-  <StreamingService
+  <!-- <StreamingService
     name="Hulu"
     linkUrl="https://www.hulu.com/"
     imageUrl="https://files.brannan.cloud/tv-files/hulu-450x174.jpg"
-  />
+  /> -->
 
   <StreamingService
-    name="YouTube"
+    name=""
     linkUrl="https://youtube.com/"
     imageUrl="https://files.brannan.cloud/tv-files/youtube-450x174.jpg"
   />
