@@ -14,16 +14,6 @@
         <li>Removed Paramount+</li>
       </ul>
     </li>
-    <li>
-      Removed "Find A Show" temporarily.
-      <ul>
-        <li>
-          I have a updates I need to make behind-the-scenes. If you need help finding a show, let me
-          or mom know.
-        </li>
-      </ul>
-    </li>
-
     <li>Several minor style updates to make your TV look cleaner.</li>
     <li>Backend tweaks to keep your TV up to date.</li>
   </ul>

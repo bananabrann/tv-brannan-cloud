@@ -11,11 +11,9 @@
     <div>
       <a href="/"> Home</a>
       <span>|</span>
-      <a href="/whats-new">What's New</a>
-      <!--
+      <a href="/whats-new">What's New</a>      
       <span>|</span>
       <a href="/ask">Find A Show</a>
-      -->
     </div>
 
     <div>
