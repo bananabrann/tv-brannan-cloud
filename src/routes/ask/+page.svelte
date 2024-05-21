@@ -77,13 +77,13 @@
     <MessageBlock
       message={{
         role: "assistant",
-        content: `Hi 😀, I'm your chatbot. I can help you find where a TV show or movie is, or try to answer any questions you may have. Simply type the name of the show you're looking for, or ask your question. I'm able to hold a conversation!`
+        content: `Hi 😀, I'm your chatbot. I can help you find where a TV show or movie is, or try to answer any questions you may have. Simply type the name of the show you're looking for, or ask your question. Keep in mind though, I may be wrong.`
       }}
     />
     <MessageBlock
       message={{
         role: "assistant",
-        content: `Keep in mind, I may be wrong and do not know information after September, 2021. By sending a message, you understand and consent that I log your messages and other information to ensure no abuse occurs.`
+        content: `By sending a message, you understand and consent that I log your messages and other information to ensure no abuse occurs.`
       }}
     />
 
