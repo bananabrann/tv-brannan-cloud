@@ -42,6 +42,9 @@
       display: flex;
       align-items: center;
       gap: 1vw;
+      a {
+        font-size: 1.45em;
+      }
     }
   }
 

@@ -1,0 +1,14 @@
+[Unit]
+Description=Script to startup Firefox for grandmas TV
+After=display.manager.target
+
+[Service]
+ExecStart=/usr/local/bin/start-tv.sh
+Type=simple
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/ome/tv/.Xauthority
+User=tv
+#Restart=on-failure # optional
+
+[Install]
+WantedBy=graphical.target
