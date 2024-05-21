@@ -13,9 +13,10 @@ As of 1.1.0, tv.brannan.cloud now has a GPT 3.4-turbo -powered chat bot tailored
 
 This app is intended to run on Ubuntu 24.04 connected to a TV. These steps assume that you already have Ubuntu 24.04 on the computer.
 
-> For help with that, Google "how to flash .iso to harddrive.
+> For help with that, Google "how to flash .iso to harddrive."
 
 After installaing Ubuntu, there's a few config items to change to make sure the grandma's TV is ready-to-go.
+After installaing Ubuntu, there are a few config items to change to make sure the grandma's TV is ready-to-go.
 
 ### Start on-screen keyboard
 
@@ -25,7 +26,7 @@ Settings > Accessibility > Enable "Screen Keyboard"
 
 ### Setup fullscreen script
 
-Grandma's TV is an illusion, because it's actually nothing fancy under the hood. But to give that illusion, the website needs to be in fullscreen mode. Grandma doesn't have access to a keyboard, so pressing F11 everytime is not acceptable. Do the following steps so that Firefox can automatically open in fullscreen mode.
+Grandma's TV is an illusion because it's actually nothing fancy under the hood. But to give that illusion, the website needs to be in fullscreen mode. Grandma doesn't have access to a keyboard, so pressing F11 everytime is not acceptable. Do the following steps so that Firefox can automatically open in fullscreen mode.
 
 #### Disable Wayland
 
@@ -45,7 +46,7 @@ WaylandEnable=false
 
 #### Run tv script on startup
 
-We need to add a task so that our script is ran on startup. This will allow tv.brannan.cloud to pop-up when grandma turns it on.
+We need to add a task so that our script is run on startup. This will allow tv.brannan.cloud to pop-up when grandma turns it on.
 
 Place the startup script in /usr/local/bin/
 
