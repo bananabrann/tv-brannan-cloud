@@ -90,9 +90,10 @@ Add it to systemctl.
 sudo system enable start_tv.service
 ```
 
-And you're done!
+And you're done! When the system reboots, you should be greeted with tv.brannan.cloud.
 
-> Helpful systemctl actions:
+> Here are some common systemctl commands when debugging or developing.
+
 ```bash
 # Reload the daemon. This is useful if you edit start_tv.service.
 $ sudo systemctl daemon-reload
