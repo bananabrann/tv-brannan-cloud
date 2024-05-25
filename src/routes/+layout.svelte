@@ -1,7 +1,16 @@
 <script>
   import "../app.scss";
   import Github from "svelte-material-icons/Github.svelte";
+  import Fullscreen from "svelte-material-icons/Fullscreen.svelte";
   import { version } from "$app/environment";
+
+  function toggleFullscreen() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      document.documentElement.requestFullscreen();
+    }
+  }
 </script>
 
 <div class="line" />
@@ -17,11 +26,17 @@
     </div>
 
     <div>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <span class="fullscreen-nav-icon" on:click={toggleFullscreen}>
+        <Fullscreen size="1.75rem" />
+      </span>
+
       <span class="github-nav-icon">
         <a target="_blank" href="https://github.com/bananabrann/tv.brannan.cloud">
           <Github size="1.75rem" />
         </a>
       </span>
+
       <span>{version}</span>
     </div>
     <!-- <a href={`https://github.com/bananabrann/tv.brannan.cloud/releases/tag/v&#x24;{version}`}>{version}</a -->
@@ -52,6 +67,10 @@
     a {
       color: inherit;
     }
+  }
+
+  .fullscreen-nav-icon {
+    cursor: pointer;
   }
 
   .line {
