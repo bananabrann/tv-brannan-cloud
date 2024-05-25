@@ -14,7 +14,7 @@
     justify-content: center;
     word-wrap: wrap;
     font-size: 3rem;
-    margin-top: 4rem;
+    margin: 4rem auto 0 auto;
 
     code {
       display: flex;
