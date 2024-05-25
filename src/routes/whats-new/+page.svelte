@@ -1,5 +1,5 @@
 <article>
-  <h3>May 20th, 2024</h3>
+  <h3>May 25th, 2024</h3>
 
   <p>Summer is here, and with your new TV comes updates and housekeeping to your TV:</p>
   <ul>
@@ -16,6 +16,7 @@
     </li>
     <li>Several minor style updates to make your TV look cleaner.</li>
     <li>Backend tweaks to keep your TV up to date.</li>
+    <li>Added a button that allows mom to go "pro mode" if needed.</li>
   </ul>
 </article>
 
