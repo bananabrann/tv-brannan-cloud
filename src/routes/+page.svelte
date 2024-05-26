@@ -14,6 +14,24 @@
     linkUrl="https://youtube.com/"
     imageUrl="https://files.brannan.cloud/tv-files/youtube-450x174.jpg"
   />
+
+  <StreamingService
+    name=""
+    linkUrl="https://www.hulu.com/"
+    imageUrl="https://files.brannan.cloud/tv-files/hulu-450x174.jpg"
+  />
+
+  <StreamingService
+    name=""
+    linkUrl="https://www.hulu.com/hub/sports"
+    imageUrl="https://files.brannan.cloud/tv-files/espn-450x174.jpg"
+  />
+
+  <StreamingService
+    name=""
+    linkUrl="https://www.disneyplus.com/"
+    imageUrl="https://files.brannan.cloud/tv-files/disney-450x174.png"
+  />
 </section>
 
 <style>
