@@ -32,6 +32,12 @@
     linkUrl="https://www.disneyplus.com/"
     imageUrl="https://files.brannan.cloud/tv-files/disney-450x174.png"
   />
+
+  <StreamingService
+    name=""
+    linkUrl="https://www.kera.org/tv/live/"
+    imageUrl="https://brannancloudstorage.blob.core.windows.net/tv-files/kera-450x174.png"
+  />
 </section>
 
 <style>
