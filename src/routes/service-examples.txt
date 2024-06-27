@@ -39,3 +39,15 @@
   linkUrl="https://www.hulu.com/hub/news-on-hulu"
   imageUrl="https://files.brannan.cloud/tv-files/abcnewslive-450x174jpg.jpg"
 />
+
+<StreamingService
+  name="KERA"
+  linkUrl="https://www.kera.org/tv/live/"
+  imageUrl="https://brannancloudstorage.blob.core.windows.net/tv-files/kera-450x174.png"
+/>
+
+<StreamingService
+  name=""
+  linkUrl="https://www.disneyplus.com/"
+  imageUrl="https://files.brannan.cloud/tv-files/disney-450x174.png"
+/>

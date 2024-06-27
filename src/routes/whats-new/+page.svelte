@@ -1,19 +1,9 @@
-<article>
-  <h3>May 26th, 2024</h3>
-
-  <p>Summer is here, and with your new TV comes updates and housekeeping to your TV:</p>
+<article id="most-current-update">
+  <h3>June 27th, 2024</h3>
+  <p>June is the one year anneversary of your TV!</p>
   <ul>
-    <li>Removed "Show of the Week" from your homepage.</li>
-    <li>
-      Updated what services you have and see on your homepage due to usage. If you would like to
-      have them back, just let me know.
-      <ul>
-        <li>Removed ABC Live News.</li>
-      </ul>
-    </li>
-    <li>Made the header text a little bigger.</li>
-    <li>Backend tweaks to keep your TV up to date.</li>
-    <li>Added a button that allows mom to go "pro mode" if needed.</li>
+    <li>Added KERA.</li>
+    <li>Behind-the-scene updates to keep your TV up-to-date.</li>
   </ul>
 </article>
 
@@ -23,6 +13,25 @@
 </div>
 
 <section>
+  <article>
+    <h3>May 26th, 2024</h3>
+
+    <p>Summer is here, and with your new TV comes updates and housekeeping to your TV:</p>
+    <ul>
+      <li>Removed "Show of the Week" from your homepage.</li>
+      <li>
+        Updated what services you have and see on your homepage due to usage. If you would like to
+        have them back, just let me know.
+        <ul>
+          <li>Removed ABC Live News.</li>
+        </ul>
+      </li>
+      <li>Made the header text a little bigger.</li>
+      <li>Backend tweaks to keep your TV up to date.</li>
+      <li>Added a button that allows mom to go "pro mode" if needed.</li>
+    </ul>
+  </article>
+
   <article>
     <h3>September 6th, 2023</h3>
     <ul>
@@ -84,8 +93,9 @@
 </section>
 
 <style lang="scss">
-  section {
-    color: rgba($light-color, 0.5);
+  section,
+  section * {
+    color: rgba($light-color, 0.25);
   }
 
   article {
