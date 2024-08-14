@@ -28,12 +28,12 @@
     <div>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <span class="fullscreen-nav-icon" on:click={toggleFullscreen}>
-        <Fullscreen size="1.75rem" />
+        <Fullscreen size="1.25rem" />
       </span>
 
       <span class="github-nav-icon">
         <a target="_blank" href="https://github.com/bananabrann/tv.brannan.cloud">
-          <Github size="1.75rem" />
+          <Github size="1.25rem" />
         </a>
       </span>
 
@@ -58,7 +58,7 @@
       align-items: center;
       gap: 1vw;
       a {
-        font-size: 1.45em;
+        font-size: 1.15em;
       }
     }
   }
