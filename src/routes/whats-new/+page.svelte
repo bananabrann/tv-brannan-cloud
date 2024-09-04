@@ -1,9 +1,8 @@
 <article id="most-current-update">
-  <h3>June 27th, 2024</h3>
-  <p>June is the one year anneversary of your TV!</p>
+  <h3>September 3rd, 2024</h3>
   <ul>
-    <li>Added KERA.</li>
-    <li>Behind-the-scene updates to keep your TV up-to-date.</li>
+    <li>Added Amazone Prime Video.</li>
+    <li>You can now watch Hulu and Disney+ without any advertisements.</li>
   </ul>
 </article>
 
@@ -13,6 +12,15 @@
 </div>
 
 <section>
+  <article>
+    <h3>June 27th, 2024</h3>
+    <p>June is the one year anneversary of your TV!</p>
+    <ul>
+      <li>Added KERA.</li>
+      <li>Behind-the-scene updates to keep your TV up-to-date.</li>
+    </ul>
+  </article>
+
   <article>
     <h3>May 26th, 2024</h3>
 

@@ -11,6 +11,12 @@
 
   <StreamingService
     name=""
+    linkUrl="https://www.amazon.com/Amazon-Video/b/?&node=2858778011&ref=dvm_MLP_ROWNA_US_1"
+    imageUrl="https://brannancloudstorage.blob.core.windows.net/tv-files/prime-591x263.jpg"
+  />
+
+  <StreamingService
+    name=""
     linkUrl="https://youtube.com/"
     imageUrl="https://files.brannan.cloud/tv-files/youtube-450x174.jpg"
   />

@@ -18,6 +18,10 @@
     overflow: hidden;
     display: block;
     border-radius: 1.5rem;
+    max-width: 450px;
+    max-height: 174px;
+    object-fit: fill;
+
     img {
       @include gentle-transition();
       width: 100%;
